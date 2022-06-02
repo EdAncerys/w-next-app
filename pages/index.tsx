@@ -15,7 +15,7 @@ const Home: NextPage = ({ jwt, secret }: { jwt: number; secret: string }) => {
     <div>
       <AppHead />
 
-      <div className="app-wrapper">
+      <div className="app-wrapper sailec">
         <div className="nav-container">Navigation</div>
         <div className="content-wrapper pink">
           <div className="side-bar">SideBar </div>

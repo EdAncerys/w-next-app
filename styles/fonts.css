@@ -1,0 +1,13 @@
+/* app fonts */
+
+@font-face {
+  src: url(../fonts/Sailec-Medium.otf);
+  font-family: Sailec;
+  line-height: 1;
+}
+
+.sailec {
+  font-family: Sailec, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
