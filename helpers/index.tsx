@@ -1,20 +1,8 @@
-import { client, MUTATION_LOG_IN } from '../apollo';
+import { appColors } from './colors';
+import { appLoginAction, redirectAction } from './actions';
 
-interface SecretsInterface {
-  identifier: string | undefined;
-  password: string | undefined;
-}
+// --------------------------------------------------------------------------------
+// 📌  Helper exports
+// --------------------------------------------------------------------------------'
 
-export const appLoginAction = async ({
-  identifier,
-  password,
-}: SecretsInterface) => {
-  console.log('loginActions triggered'); //debug
-
-  const response = await client.mutate({
-    mutation: MUTATION_LOG_IN,
-    variables: { identifier, password },
-  });
-
-  return response.data.login;
-};
+export { appColors, appLoginAction, redirectAction };
