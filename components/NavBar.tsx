@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-// import SearchBox from './SearchBox';
+import AppSearch from './AppSearch';
 import Image from 'next/image';
 // CONTEXT -------------------------------------------------------------------
 import { redirectAction } from '../helpers';
@@ -15,9 +15,9 @@ const NavBar = ({}) => {
   return (
     <div className="flex nav-wrapper">
       <div onClick={handleDownloadApp} style={{ cursor: 'pointer' }}>
-        <Image src={'/png/logo.png'} width={118.72} height={24} />
+        <Image src={'/svg/logo.svg'} width={118.72} height={24} />
       </div>
-      {/* <SearchBox /> */}
+      <AppSearch />
       <div className="main-btn" onClick={handleDownloadApp}>
         Download app
       </div>
