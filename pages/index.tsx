@@ -15,9 +15,19 @@ const Home: NextPage = ({ jwt, secret }: { jwt: number; secret: string }) => {
     <div>
       <AppHead />
 
-      <div>Content</div>
-      <div>{secret}</div>
-      <Image src="/png/wunder.png" width={200} height={200} />
+      <div className="app-wrapper">
+        <div className="nav-container">Navigation</div>
+        <div className="content-wrapper pink">
+          <div className="side-bar">SideBar </div>
+          <div className="feed-wrapper">
+            <Image src="/png/wunder.png" width={200} height={200} />
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
