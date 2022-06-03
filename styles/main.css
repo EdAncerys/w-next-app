@@ -35,11 +35,13 @@
   padding: 0 10%;
 }
 .flex {
+  position: relative;
   display: flex;
   flex: 1;
   align-items: center;
 }
 .flex-col {
+  position: relative;
   display: flex;
   flex: 1;
   flex-direction: column;

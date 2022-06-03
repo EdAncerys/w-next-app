@@ -12,9 +12,6 @@ const SearchBox = () => {
   const [searchFilter, setFilter] = useState('');
   const [postData, setData] = useState(null);
 
-  const inputWidth = 330;
-  const inputHeight = 40;
-
   // HANDLERS ---------------------------------------------------------
   const handleClearInput = () => {
     setFilter('');
@@ -25,6 +22,7 @@ const SearchBox = () => {
     jwt: string;
     filter: string;
   }
+
   const getPostsWithFilter = ({ jwt, filter }: PostFilterInterface) => {
     console.log('🐞 api call');
 
@@ -110,16 +108,13 @@ const SearchBox = () => {
 
     return (
       <div
-        style={{ display: 'flex', flexDirection: 'column', padding: '5px 0' }}
+        className="flex-col"
+        style={{ padding: '5px 0' }}
         onClick={handlePostClick}
       >
         <div className="search-body">{titlePreview}</div>
-        <div
-          style={{ display: 'flex', padding: '2px 0', alignItems: 'center' }}
-        >
-          <div
-            style={{ display: 'flex', alignItems: 'center', paddingRight: 10 }}
-          >
+        <div className="flex" style={{ padding: '2px 0' }}>
+          <div className="flex" style={{ paddingRight: 10 }}>
             <div style={{ fontSize: 9 }}>{username}</div>
           </div>
           {validated === 'yes' && (
@@ -131,25 +126,12 @@ const SearchBox = () => {
   };
 
   return (
-    <div
-      className="flex-col"
-      style={{
-        margin: '0 10px',
-        maxWidth: inputWidth,
-      }}
-    >
+    <div className="flex-col" style={{ alignItems: 'center' }}>
       <div
+        className="input-wrapper"
         style={{
-          position: 'relative',
-          display: 'flex',
-          height: inputHeight,
-          alignItems: 'center',
-          borderTopLeftRadius: inputHeight / 2,
-          borderTopRightRadius: inputHeight / 2,
-          borderBottomLeftRadius: postData ? 0 : inputHeight / 2,
-          borderBottomRightRadius: postData ? 0 : inputHeight / 2,
-          border: `1px solid ${appColors.lightSilver}`,
-          backgroundColor: appColors.lightSilver,
+          borderBottomLeftRadius: postData ? 0 : 20,
+          borderBottomRightRadius: postData ? 0 : 20,
         }}
       >
         {!searchFilter && <SearchIcon />}
@@ -168,18 +150,20 @@ const SearchBox = () => {
       </div>
       {postData && (
         <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            position: 'absolute',
-            width: inputWidth,
-            borderBottomLeftRadius: inputHeight / 2,
-            borderBottomRightRadius: inputHeight / 2,
-            padding: '0px 20px',
-            zIndex: 99,
-            marginTop: inputHeight,
-            backgroundColor: appColors.lightSilver,
-          }}
+          style={
+            {
+              // display: 'flex',
+              // flexWrap: 'wrap',
+              // position: 'absolute',
+              // width: inputWidth,
+              // borderBottomLeftRadius: inputHeight / 2,
+              // borderBottomRightRadius: inputHeight / 2,
+              // padding: '0px 20px',
+              // zIndex: 99,
+              // marginTop: inputHeight,
+              // backgroundColor: appColors.lightSilver,
+            }
+          }
         >
           <div
             style={{

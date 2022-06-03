@@ -1,0 +1,24 @@
+.main-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fd1053;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  min-width: 148px;
+  min-height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-family: Sailec;
+}
+
+.btn-icon {
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-icon:hover,
+.main-btn:hover {
+  opacity: 0.85;
+}

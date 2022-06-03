@@ -1,3 +1,9 @@
+/* css variable declaration */
+/* --nav-height: 60px; */
+:root {
+  --input-height: 40px;
+}
+
 .nav-container {
   position: fixed;
   top: 0;
@@ -22,6 +28,33 @@
   background-color: transparent;
   border: none;
   outline: none;
+}
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--input-height);
+  width: 100%;
+  max-width: 400px;
+  border-radius: calc(var(--input-height) / 2);
+  padding: 0 10px;
+  border: 1px solid #f2f2f2;
+  background-color: #f2f2f2;
+}
+.dropdown {
+  position: absolute;
+  z-index: 99;
+  flex-wrap: wrap;
+  top: calc(var(--input-height) + 10px);
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: scroll;
+  background-color: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  border-bottom-left-radius: calc(var(--input-height) / 2);
+  border-bottom-right-radius: calc(var(--input-height) / 2);
+  padding: 0 20px;
 }
 
 .search-body {
