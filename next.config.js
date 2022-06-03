@@ -3,8 +3,28 @@
 const withImages = require('next-images');
 module.exports = withImages();
 
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = {
+  // --------------------------------------------------------------------------------
+  // 📌  Next.js configuration for image sources
+  // --------------------------------------------------------------------------------
+  images: {
+    domains: [
+      'wunder-strapi-staging.s3.eu-west-2.amazonaws.com',
+      'wunderalpha-strapi-staging.s3.eu-west-2.amazonaws.com',
+      'wunder-strapi-uat.s3.eu-west-2.amazonaws.com',
+    ],
+  },
+  // --------------------------------------------------------------------------------
+  // 📌  To test headers use: curl -v http://localhost:8000/.well-known/apple-app-site-association
+  // --------------------------------------------------------------------------------
+  experimental: {
+    async headers() {
+      return [
+        {
+          source: '/.well-known/apple-app-site-association',
+          headers: [{ key: 'content-type', value: 'application/json' }],
+        },
+      ];
+    },
+  },
 };
-
-module.exports = nextConfig;
