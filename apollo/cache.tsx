@@ -1,16 +1,18 @@
 import { InMemoryCache, makeVar } from '@apollo/client';
 
+interface TakenInterface {
+  jwt: string | null;
+}
+
 // 📌 Create & initialize reactive variables
-export const todosVar = makeVar('hello');
+export const jwt = makeVar<string | null>(null);
 
 export const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        todosVar: {
-          read() {
-            return todosVar();
-          },
+        jwt() {
+          return jwt();
         },
       },
     },

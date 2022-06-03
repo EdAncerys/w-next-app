@@ -1,17 +1,19 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import AppSearch from './AppSearch';
 import Image from 'next/image';
-import { makeVar } from '@apollo/client';
-import { todosVar } from '../apollo/cache';
+import { useReactiveVar } from '@apollo/client';
+import { jwt } from '../apollo/cache';
 // CONTEXT -------------------------------------------------------------------
 import { redirectAction } from '../helpers';
 
 const NavBar = ({}) => {
   const router = useRouter();
-  console.log('🐞 ', todosVar());
+  const update = useReactiveVar(jwt);
 
-  todosVar('goodbye');
-  console.log('🐞 ', todosVar());
+  useEffect(() => {
+    console.log('🐞 via useReactiveVar', update);
+  }, [update]);
 
   // HANDLERS ---------------------------------------------------------
   const handleDownloadApp = () => {

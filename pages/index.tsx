@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { ApolloProvider, makeVar } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import { client } from '../apollo';
 // COMPONENTS
 import AppHead from '../components/AppHead';
@@ -9,6 +9,7 @@ import NavBar from '../components/NavBar';
 // 📌 HELPERS
 import { appLoginAction } from '../helpers';
 import { HomeInterface } from '../interfaces';
+import { jwt } from '../apollo/cache';
 
 const Home: NextPage = ({ taken }: HomeInterface) => {
   // --------------------------------------------------------------------------------
@@ -18,7 +19,9 @@ const Home: NextPage = ({ taken }: HomeInterface) => {
   useEffect(() => {
     // 📌 set available initial data to apollo state
     if (taken) {
-      const myVar = makeVar(taken);
+      setTimeout(() => {
+        jwt(taken);
+      }, 2000);
     }
   }, [taken]);
 
@@ -37,7 +40,17 @@ const Home: NextPage = ({ taken }: HomeInterface) => {
             <div>content</div>
             <div>content</div>
             <div>content</div>
-            <div>content</div>
+            <div
+              className="main-btn"
+              onClick={() => {
+                // get random number from 1 to 10
+                const random = Math.floor(Math.random() * 10) + 1;
+                appVar('updated ' + random);
+                // console.log('🐞 ', appVar());
+              }}
+            >
+              update
+            </div>
           </div>
         </div>
       </div>
