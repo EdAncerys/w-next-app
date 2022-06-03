@@ -1,19 +1,29 @@
+import { useEffect } from 'react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import { ApolloProvider, makeVar } from '@apollo/client';
+import { client } from '../apollo';
 // COMPONENTS
 import AppHead from '../components/AppHead';
 import NavBar from '../components/NavBar';
 // 📌 HELPERS
-import { appLoginAction } from '../helpers/actions';
+import { appLoginAction } from '../helpers';
+import { HomeInterface } from '../interfaces';
 
-const Home: NextPage = ({ jwt, secret }: { jwt: number; secret: string }) => {
+const Home: NextPage = ({ taken }: HomeInterface) => {
   // --------------------------------------------------------------------------------
   // 📌  MAIN APP EXIT COMPONENT
   // --------------------------------------------------------------------------------
-  console.log('🐞 jwt ', jwt);
+
+  useEffect(() => {
+    // 📌 set available initial data to apollo state
+    if (taken) {
+      const myVar = makeVar(taken);
+    }
+  }, [taken]);
 
   return (
-    <div>
+    <ApolloProvider client={client}>
       <AppHead />
 
       <div className="app-wrapper sailec">
@@ -31,18 +41,18 @@ const Home: NextPage = ({ jwt, secret }: { jwt: number; secret: string }) => {
           </div>
         </div>
       </div>
-    </div>
+    </ApolloProvider>
   );
 };
 
 export const getServerSideProps = async (context: any) => {
   console.log('getServerSideProps', context);
   const secret = process.env.GRAPHQL_URI;
-  let jwt: string = '';
+  let taken: string = '';
 
   try {
     // 📌 app login action to retrieve jwt
-    jwt = await appLoginAction({
+    taken = await appLoginAction({
       identifier: process.env.LOGIN_USERNAME,
       password: process.env.LOGIN_PASSWORD,
     });
@@ -52,7 +62,7 @@ export const getServerSideProps = async (context: any) => {
 
   return {
     props: {
-      jwt,
+      taken,
       secret,
     },
   };

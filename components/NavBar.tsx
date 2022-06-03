@@ -1,11 +1,17 @@
 import { useRouter } from 'next/router';
 import AppSearch from './AppSearch';
 import Image from 'next/image';
+import { makeVar } from '@apollo/client';
+import { todosVar } from '../apollo/cache';
 // CONTEXT -------------------------------------------------------------------
 import { redirectAction } from '../helpers';
 
 const NavBar = ({}) => {
   const router = useRouter();
+  console.log('🐞 ', todosVar());
+
+  todosVar('goodbye');
+  console.log('🐞 ', todosVar());
 
   // HANDLERS ---------------------------------------------------------
   const handleDownloadApp = () => {
