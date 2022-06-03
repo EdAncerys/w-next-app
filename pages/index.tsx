@@ -18,11 +18,7 @@ const Home: NextPage = ({ taken }: HomeInterface) => {
 
   useEffect(() => {
     // 📌 set available initial data to apollo state
-    if (taken) {
-      setTimeout(() => {
-        jwt(taken);
-      }, 2000);
-    }
+    if (taken) jwt(taken);
   }, [taken]);
 
   return (
@@ -45,8 +41,6 @@ const Home: NextPage = ({ taken }: HomeInterface) => {
               onClick={() => {
                 // get random number from 1 to 10
                 const random = Math.floor(Math.random() * 10) + 1;
-                appVar('updated ' + random);
-                // console.log('🐞 ', appVar());
               }}
             >
               update
@@ -59,8 +53,6 @@ const Home: NextPage = ({ taken }: HomeInterface) => {
 };
 
 export const getServerSideProps = async (context: any) => {
-  console.log('getServerSideProps', context);
-  const secret = process.env.GRAPHQL_URI;
   let taken: string = '';
 
   try {
@@ -70,13 +62,12 @@ export const getServerSideProps = async (context: any) => {
       password: process.env.LOGIN_PASSWORD,
     });
   } catch (error) {
-    console.log('🐞 ', error);
+    console.log('🐞 SERVER SIDE ERROR', error);
   }
 
   return {
     props: {
       taken,
-      secret,
     },
   };
 };

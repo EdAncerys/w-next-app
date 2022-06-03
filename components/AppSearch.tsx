@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import CloseIcon from '@mui/icons-material/Close';
 // CONTEXT -------------------------------------------------------------------
-import { appColors } from '../helpers';
+import { appColors, getPostsWithFilter } from '../helpers';
 
 const SearchBox = () => {
   const router = useRouter();
@@ -19,15 +19,8 @@ const SearchBox = () => {
   };
 
   interface PostFilterInterface {
-    jwt: string;
     filter: string;
   }
-
-  const getPostsWithFilter = ({ jwt, filter }: PostFilterInterface) => {
-    console.log('🐞 api call');
-
-    return null;
-  };
 
   useEffect(() => {
     // --------------------------------------------------------------------------------
@@ -38,7 +31,7 @@ const SearchBox = () => {
     const fetchData = async () => {
       // delay search lookup to prevent multiple requests
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      const response = await getPostsWithFilter({ jwt, filter: searchFilter });
+      const response = await getPostsWithFilter({ filter: searchFilter });
 
       if (response) {
         setData(response);
@@ -108,14 +101,16 @@ const SearchBox = () => {
 
     return (
       <div
-        className="flex-col"
-        style={{ padding: '5px 0' }}
+        className="flex-col interactive-text"
+        style={{ padding: '5px 0', cursor: 'pointer' }}
         onClick={handlePostClick}
       >
         <div className="search-body">{titlePreview}</div>
         <div className="flex" style={{ padding: '2px 0' }}>
           <div className="flex" style={{ paddingRight: 10 }}>
-            <div style={{ fontSize: 9 }}>{username}</div>
+            <div className="username" style={{ fontSize: 9 }}>
+              @{username}
+            </div>
           </div>
           {validated === 'yes' && (
             <Image src="/icons/verified.svg" width={8} height={8} />
@@ -149,32 +144,8 @@ const SearchBox = () => {
         <ServeClearSearch />
       </div>
       {postData && (
-        <div
-          style={
-            {
-              // display: 'flex',
-              // flexWrap: 'wrap',
-              // position: 'absolute',
-              // width: inputWidth,
-              // borderBottomLeftRadius: inputHeight / 2,
-              // borderBottomRightRadius: inputHeight / 2,
-              // padding: '0px 20px',
-              // zIndex: 99,
-              // marginTop: inputHeight,
-              // backgroundColor: appColors.lightSilver,
-            }
-          }
-        >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              maxHeight: '25vh',
-              flex: 1,
-              padding: '15px 0',
-              borderTop: `1px solid ${appColors.silver}`,
-            }}
-          >
+        <div className="dropdown-wrapper">
+          <div className="dropdown">
             <div style={{ overflowY: 'auto' }}>
               {postData.map((feed, index) => (
                 <PostItem post={feed} key={String(index)} />

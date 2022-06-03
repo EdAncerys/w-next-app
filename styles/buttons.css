@@ -17,6 +17,14 @@
 .btn-icon {
   transition: all 0.3s ease-in-out;
 }
+.interactive-text {
+  transition: all 0.3s ease-in-out;
+}
+
+.interactive-text:hover,
+.interactive-text:hover > .username {
+  color: #828282;
+}
 
 .btn-icon:hover,
 .main-btn:hover {

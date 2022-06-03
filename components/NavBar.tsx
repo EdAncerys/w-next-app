@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import AppSearch from './AppSearch';
 import Image from 'next/image';
@@ -10,10 +9,6 @@ import { redirectAction } from '../helpers';
 const NavBar = ({}) => {
   const router = useRouter();
   const update = useReactiveVar(jwt);
-
-  useEffect(() => {
-    console.log('🐞 via useReactiveVar', update);
-  }, [update]);
 
   // HANDLERS ---------------------------------------------------------
   const handleDownloadApp = () => {
