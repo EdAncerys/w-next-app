@@ -43,6 +43,7 @@ const HashTags = ({}) => {
                 >
                   <Image
                     src="/icons/hashtag.svg"
+                    objectFit="cover"
                     width={24}
                     height={24}
                     style={{ color: appColors.white }}

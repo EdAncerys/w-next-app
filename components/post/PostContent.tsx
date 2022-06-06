@@ -51,7 +51,7 @@ const PostContent = ({ post, isPost }: PostContentInterface) => {
 
   return (
     <div className="flex" style={{ margin: '10px 0' }}>
-      <div className="flex">
+      <div className="flex-col">
         <div className="post-title">{title}</div>
         <div
           className={isPost ? 'post-body-full' : 'post-body'}
@@ -62,10 +62,14 @@ const PostContent = ({ post, isPost }: PostContentInterface) => {
         <ServeTagContainer />
       </div>
 
-      <div style={{ paddingLeft: '1em' }} className={isPost ? '' : 'd-none'}>
+      <div
+        style={{ marginLeft: '1em' }}
+        className={isPost ? 'd-none' : 'avatar'}
+      >
         <Image
           src={`/icons/${people ? 'People' : 'Planet'}.svg`}
           alt={title}
+          objectFit="cover"
           width="100%"
           height="100%"
         />

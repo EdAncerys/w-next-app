@@ -3,6 +3,24 @@
   --avatar: 40px;
 }
 
+.post-body {
+  /* 
+  overflow config 
+  must not use padding for div not to overflow
+  */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  /* font config */
+  font-size: 14px;
+  font-weight: 700;
+}
+.post-body-full {
+  font-size: 14px;
+  font-weight: 700;
+}
 .actions-wrapper {
   justify-content: space-between;
   padding: 18px 10px;
