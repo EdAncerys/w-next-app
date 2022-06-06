@@ -40,7 +40,6 @@ const TrendingAccounts = ({}) => {
             const { id, firstName, lastName, username, picture, validated } =
               user;
             const isValidated = validated === 'yes';
-            console.log('🐞 ', isValidated);
 
             const avatarPlaceholder = '/icons/wunderIcon.svg';
             const profileAvatar = picture[0] ? picture[0].url : null;

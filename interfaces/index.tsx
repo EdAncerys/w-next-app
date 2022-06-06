@@ -28,3 +28,26 @@ export enum Validated {
   Yes = 'yes',
 }
 // --------------------------------------------------------------------------------
+
+export interface FeedInterface {
+  startFrom: number;
+  limit: number;
+  jwt: string;
+}
+
+export interface SecretsInterface {
+  identifier: string | undefined;
+  password: string | undefined;
+}
+export interface RedirectInterface {
+  router: NextRouter;
+  path: string;
+}
+
+export interface FilterInterface {
+  filter: string;
+}
+
+export interface TakenInterface {
+  jwt: string;
+}

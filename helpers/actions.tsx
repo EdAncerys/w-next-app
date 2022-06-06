@@ -7,26 +7,17 @@ import {
   QUERY_TRENDING_ACCOUNTS,
 } from '../apollo';
 import { jwt } from '../apollo/cache';
+import {
+  FeedInterface,
+  SecretsInterface,
+  RedirectInterface,
+  FilterInterface,
+  TakenInterface,
+} from '../interfaces';
 
 // --------------------------------------------------------------------------------
 // 📌  Actions Interfaces
 // --------------------------------------------------------------------------------
-interface SecretsInterface {
-  identifier: string | undefined;
-  password: string | undefined;
-}
-interface RedirectInterface {
-  router: NextRouter;
-  path: string;
-}
-
-interface FilterInterface {
-  filter: string;
-}
-
-interface TakenInterface {
-  jwt: string;
-}
 
 export const appLoginAction = async ({
   identifier,
@@ -115,6 +106,36 @@ export const getTrendingAccounts = async ({ jwt }: TakenInterface) => {
     return response.data.UsersByScore;
   } catch (err) {
     console.log('err', JSON.stringify(err)); //debug
+  }
+};
+
+export const getFeedData = async ({ startFrom, limit, jwt }: FeedInterface) => {
+  console.log('getFeedData triggered'); //debug
+
+  try {
+    // --------------------------------------------------------------------------------
+    // 📌  feed data fetch action
+    // params past via props to amend fetch query parameters
+    // --------------------------------------------------------------------------------
+    if (!jwt) throw new Error('No app taken not provided.');
+
+    const response = await client.query({
+      query: QUERY_GET_CHUNK_OF_POSTS,
+      variables: { startFrom, draft: false, limit: limit || 5 }, // draft as default value
+      fetchPolicy: 'network-only',
+      context: {
+        headers: {
+          authorization: 'Bearer ' + jwt,
+        },
+      },
+    });
+    if (!response) throw new Error('Failed to get response');
+    // ⬇️  get post data
+    const data = response.data.postsWithStatistics;
+
+    return data;
+  } catch (error) {
+    console.log(error);
   }
 };
 
