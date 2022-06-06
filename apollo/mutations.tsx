@@ -53,9 +53,6 @@ let year = date.getFullYear();
 let month = date.getMonth() + 1;
 let dateString = `${year}-${month}-01`;
 
-console.log('🐞 ', dateString);
-// ${dateString}
-
 export const QUERY_TAGS = gql`
   query getTrendingTags {
     TrendingHashtags(cutoff: "${dateString}") {

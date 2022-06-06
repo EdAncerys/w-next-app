@@ -23,7 +23,7 @@ const Home: NextPage = ({ taken, hasTags }: HomeInterface) => {
     if (hasTags) tags(hasTags);
   }, [taken]);
 
-  console.log('🐞 tags', hasTags);
+  // console.log('🐞 tags', hasTags);
 
   return (
     <ApolloProvider client={client}>

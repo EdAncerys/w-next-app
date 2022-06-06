@@ -1,51 +1,45 @@
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import AppSearch from './AppSearch';
 import Image from 'next/image';
+import { tags } from '../apollo/cache';
 import { useReactiveVar } from '@apollo/client';
-import { jwt } from '../apollo/cache';
 // CONTEXT
-import { redirectAction } from '../helpers';
+import { redirectAction, appColors } from '../helpers';
 
 const HashTags = ({}) => {
   const router = useRouter();
-  const tags = [];
+
+  const [posts, setPost] = useState<null | string>(null);
+  const contextTags = useReactiveVar(tags);
 
   // HELPERS
   const handleDownloadApp = () => {
-    redirectAction({ router, path: `/download` });
+    // redirectAction({ router, path: `/download` });
+    console.log('🐞  get app');
   };
+
+  useEffect(() => {
+    if (contextTags) setPost(contextTags);
+  }, [contextTags]);
 
   return (
     <div>
       <div className="side-menu-title">Popular Hashtags</div>
-      <div className="flex-wrap" style={{ paddingTop: '2em' }}>
-        {tags &&
-          tags.map((tag, key) => {
+      <div className="flex-wrap" style={{ paddingTop: '1em' }}>
+        {posts &&
+          posts.map((tag, key) => {
             const { tagname } = tag;
             const tagName = tagname.replace('#', '');
 
             return (
               <div
                 key={key}
-                style={{
-                  display: 'flex',
-                  padding: '5px 0',
-                  alignItems: 'center',
-                  cursor: 'pointer',
-                }}
+                className="tag-wrapper"
                 onClick={handleDownloadApp}
               >
                 <div
-                  style={{
-                    // height: '25px',
-                    // width: '25px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: '50%',
-                    backgroundColor: appColors.black,
-                    padding: 4,
-                  }}
+                  className="flex side-menu-img-wrapper"
+                  style={{ backgroundColor: appColors.black }}
                 >
                   <Image
                     src="/icons/hashtag.svg"
