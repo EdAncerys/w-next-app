@@ -23,7 +23,7 @@ const FeedElement = ({ post }: PostInterface) => {
 
   return (
     <div className="feed-wrapper">
-      <div style={{ cursor: 'pointer' }} onClick={handlePostAction}>
+      <div className="post-content" onClick={handlePostAction}>
         <UserProfile post={post} />
         <PostContent post={post} />
       </div>

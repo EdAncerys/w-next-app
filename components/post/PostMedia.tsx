@@ -64,7 +64,7 @@ const PostMedia = ({ post, isPost }: PostContentInterface) => {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ position: 'relative' }}>
       <div
         className={isPost ? 'post-media' : 'feed-media'}
         onClick={handlePostAction}

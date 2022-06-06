@@ -6,6 +6,7 @@
 }
 @media only screen and (max-width: 600px) {
   .user-details,
+  .feed-actions,
   .search-container {
     display: none;
   }

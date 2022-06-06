@@ -2,8 +2,14 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 // --------------------------------------------------------------------------------
 import { redirectAction, appColors } from '../../helpers';
+import { PostInterface } from '../../interfaces';
 
-const PostActions = ({ post, isPost }) => {
+interface PostInterface {
+  post: PostInterface;
+  isPost?: boolean;
+}
+
+const PostActions = ({ post, isPost }: PostInterface) => {
   if (!post) return null;
 
   const router = useRouter();
@@ -87,55 +93,61 @@ const PostActions = ({ post, isPost }) => {
     );
 
   return (
-    <div
-      className="flex"
-      style={{ justifyContent: 'flex-end', alignItems: 'flex-end' }}
-    >
-      <div className="flex-col actions-wrapper">
-        <div className="icon">
-          <Image
-            src="/icons/Commend.svg"
-            alt="Commend"
-            objectFit="cover"
-            width="100%"
-            height="100%"
-            onClick={handlePostAction}
-          />
+    <div className="feed-actions">
+      <div
+        className="flex"
+        style={{
+          justifyContent: 'flex-end',
+          alignItems: 'flex-end',
+          height: '100%',
+        }}
+      >
+        <div className="flex-col actions-wrapper">
+          <div className="icon">
+            <Image
+              src="/icons/Commend.svg"
+              alt="Commend"
+              objectFit="cover"
+              width="100%"
+              height="100%"
+              onClick={handlePostAction}
+            />
+          </div>
+          <div className="icon-title">{coins}</div>
+          <div className="icon">
+            <Image
+              src="/icons/Applaud.svg"
+              alt="Applaud"
+              objectFit="cover"
+              width="100%"
+              height="100%"
+              onClick={handlePostAction}
+            />
+          </div>
+          <div className="icon-title">{applauds}</div>
+          <div className="icon">
+            <Image
+              src="/icons/Share.svg"
+              alt="Share"
+              objectFit="cover"
+              width="100%"
+              height="100%"
+              onClick={handlePostAction}
+            />
+          </div>
+          <div className="icon-title">{shoutouts}</div>
+          <div className="icon">
+            <Image
+              src="/icons/Comment.svg"
+              alt="Comment"
+              objectFit="cover"
+              width="100%"
+              height="100%"
+              onClick={handlePostAction}
+            />
+          </div>
+          <div className="icon-title">{comments}</div>
         </div>
-        <div className="icon-title">{coins}</div>
-        <div className="icon">
-          <Image
-            src="/icons/Applaud.svg"
-            alt="Applaud"
-            objectFit="cover"
-            width="100%"
-            height="100%"
-            onClick={handlePostAction}
-          />
-        </div>
-        <div className="icon-title">{applauds}</div>
-        <div className="icon">
-          <Image
-            src="/icons/Share.svg"
-            alt="Share"
-            objectFit="cover"
-            width="100%"
-            height="100%"
-            onClick={handlePostAction}
-          />
-        </div>
-        <div className="icon-title">{shoutouts}</div>
-        <div className="icon">
-          <Image
-            src="/icons/Comment.svg"
-            alt="Comment"
-            objectFit="cover"
-            width="100%"
-            height="100%"
-            onClick={handlePostAction}
-          />
-        </div>
-        <div className="icon-title">{comments}</div>
       </div>
     </div>
   );

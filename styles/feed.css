@@ -1,8 +1,13 @@
 :root {
   --icon: 28px;
   --avatar: 40px;
+  --media-width: 216px;
+  --media-height: 384px;
 }
 
+.post-content {
+  max-width: 500px;
+}
 .post-body {
   /* 
   overflow config 
@@ -13,18 +18,39 @@
   display: -webkit-box;
   -webkit-line-clamp: 3; /* number of lines to show */
   -webkit-box-orient: vertical;
-  /* font config */
-  font-size: 14px;
-  font-weight: 700;
 }
+.post-body,
 .post-body-full {
   font-size: 14px;
   font-weight: 700;
 }
+.feed-media {
+  position: relative;
+  border-radius: 16px;
+  width: var(--media-width);
+  height: var(--media-height);
+  overflow: hidden;
+  cursor: pointer;
+}
+.post-media {
+  width: var(--media-height);
+  height: var(--media-width);
+}
+/* define component size for video feed */
+.feed-media video {
+  object-fit: cover;
+}
+
+.feed-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  align-self: flex-end;
+  margin-left: calc(var(--media-width) + var(--icon));
+}
 .actions-wrapper {
   justify-content: space-between;
   padding: 18px 10px;
-  margin-left: var(--icon);
   border-radius: var(--icon);
   background-color: #fd1053;
   opacity: 0.7;
