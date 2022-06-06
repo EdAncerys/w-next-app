@@ -6,12 +6,13 @@ import { client } from '../apollo';
 // COMPONENTS
 import AppHead from '../components/AppHead';
 import NavBar from '../components/NavBar';
+import SideBar from '../components/SideBar';
 // 📌 HELPERS
-import { appLoginAction } from '../helpers';
+import { appLoginAction, getTrendingTags } from '../helpers';
 import { HomeInterface } from '../interfaces';
-import { jwt } from '../apollo/cache';
+import { jwt, tags } from '../apollo/cache';
 
-const Home: NextPage = ({ taken }: HomeInterface) => {
+const Home: NextPage = ({ taken, hasTags }: HomeInterface) => {
   // --------------------------------------------------------------------------------
   // 📌  MAIN APP EXIT COMPONENT
   // --------------------------------------------------------------------------------
@@ -19,7 +20,10 @@ const Home: NextPage = ({ taken }: HomeInterface) => {
   useEffect(() => {
     // 📌 set available initial data to apollo state
     if (taken) jwt(taken);
+    if (hasTags) tags(hasTags);
   }, [taken]);
+
+  console.log('🐞 tags', hasTags);
 
   return (
     <ApolloProvider client={client}>
@@ -30,7 +34,9 @@ const Home: NextPage = ({ taken }: HomeInterface) => {
           <NavBar />
         </div>
         <div className="content-wrapper pink">
-          <div className="side-bar">SideBar</div>
+          <div className="side-bar">
+            <SideBar />
+          </div>
           <div className="feed-wrapper">
             <Image src="/png/wunder.png" width={200} height={200} />
             <div>content</div>
@@ -53,7 +59,11 @@ const Home: NextPage = ({ taken }: HomeInterface) => {
 };
 
 export const getServerSideProps = async (context: any) => {
+  // --------------------------------------------------------------------------------
+  // 📌  Server side calls & return via props
+  // --------------------------------------------------------------------------------
   let taken: string = '';
+  let hasTags = '';
 
   try {
     // 📌 app login action to retrieve jwt
@@ -61,6 +71,7 @@ export const getServerSideProps = async (context: any) => {
       identifier: process.env.LOGIN_USERNAME,
       password: process.env.LOGIN_PASSWORD,
     });
+    hasTags = await getTrendingTags({ jwt: taken });
   } catch (error) {
     console.log('🐞 SERVER SIDE ERROR', error);
   }
@@ -68,6 +79,7 @@ export const getServerSideProps = async (context: any) => {
   return {
     props: {
       taken,
+      hasTags,
     },
   };
 };

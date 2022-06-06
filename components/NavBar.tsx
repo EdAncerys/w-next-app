@@ -3,14 +3,14 @@ import AppSearch from './AppSearch';
 import Image from 'next/image';
 import { useReactiveVar } from '@apollo/client';
 import { jwt } from '../apollo/cache';
-// CONTEXT -------------------------------------------------------------------
+// CONTEXT
 import { redirectAction } from '../helpers';
 
 const NavBar = ({}) => {
   const router = useRouter();
   const update = useReactiveVar(jwt);
 
-  // HANDLERS ---------------------------------------------------------
+  // HANDLERS
   const handleDownloadApp = () => {
     redirectAction({ router, path: `/download` });
   };

@@ -1,5 +1,10 @@
 import { NextRouter } from 'next/router';
-import { client, MUTATION_LOG_IN, QUERY_ALL_POSTS } from '../apollo';
+import {
+  client,
+  MUTATION_LOG_IN,
+  QUERY_ALL_POSTS,
+  QUERY_TAGS,
+} from '../apollo';
 import { jwt } from '../apollo/cache';
 
 // --------------------------------------------------------------------------------
@@ -16,6 +21,10 @@ interface RedirectInterface {
 
 interface FilterInterface {
   filter: string;
+}
+
+interface TakenInterface {
+  jwt: string;
 }
 
 export const appLoginAction = async ({
@@ -59,6 +68,29 @@ export const getPostsWithFilter = async ({ filter }: FilterInterface) => {
     }
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const getTrendingTags = async ({ jwt }: TakenInterface) => {
+  try {
+    console.log('getTrendingTagsAction triggered'); //debug
+    if (!jwt) throw new Error('No taken provided');
+
+    //1. get all posts and add to context
+    const response = await client.query({
+      query: QUERY_TAGS,
+      context: {
+        headers: {
+          authorization: 'Bearer ' + jwt,
+        },
+      },
+    });
+
+    if (!response) throw new Error('Failed to get trending tags');
+
+    return response.data.TrendingHashtags;
+  } catch (err) {
+    console.log('err', JSON.stringify(err)); //debug
   }
 };
 

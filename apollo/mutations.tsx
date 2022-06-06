@@ -45,3 +45,21 @@ export const QUERY_ALL_POSTS = gql`
     }
   }
 `;
+
+// 📌 get 6 month from now date to pull popular hashtags
+let date: Date = new Date();
+date.setMonth(date.getMonth() - 6);
+let year = date.getFullYear();
+let month = date.getMonth() + 1;
+let dateString = `${year}-${month}-01`;
+
+console.log('🐞 ', dateString);
+// ${dateString}
+
+export const QUERY_TAGS = gql`
+  query getTrendingTags {
+    TrendingHashtags(cutoff: "${dateString}") {
+      tagname
+    }
+  }
+`;

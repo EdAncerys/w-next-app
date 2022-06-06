@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import CloseIcon from '@mui/icons-material/Close';
-// CONTEXT -------------------------------------------------------------------
+// CONTEXT
 import { appColors, getPostsWithFilter } from '../helpers';
 
 const SearchBox = () => {
@@ -12,7 +12,7 @@ const SearchBox = () => {
   const [searchFilter, setFilter] = useState('');
   const [postData, setData] = useState(null);
 
-  // HANDLERS ---------------------------------------------------------
+  // HANDLERS
   const handleClearInput = () => {
     setFilter('');
     setData(null);
@@ -44,7 +44,7 @@ const SearchBox = () => {
     fetchData();
   }, [searchFilter]);
 
-  // SERVERS ---------------------------------------------------------
+  // SERVERS
   const ServeClearSearch = () => {
     if (!searchFilter) return null;
 
@@ -89,7 +89,7 @@ const SearchBox = () => {
     const { id, user, title } = post;
     const { username, validated } = user;
 
-    // HANDLERS ---------------------------------------------------------
+    // HANDLERS
     const handlePostClick = () => {
       router.push({
         pathname: `/post/${id}`,
