@@ -4,6 +4,7 @@ import {
   MUTATION_LOG_IN,
   QUERY_ALL_POSTS,
   QUERY_TAGS,
+  QUERY_TRENDING_ACCOUNTS,
 } from '../apollo';
 import { jwt } from '../apollo/cache';
 
@@ -73,7 +74,7 @@ export const getPostsWithFilter = async ({ filter }: FilterInterface) => {
 
 export const getTrendingTags = async ({ jwt }: TakenInterface) => {
   try {
-    console.log('getTrendingTagsAction triggered'); //debug
+    console.log('getTrendingTags triggered'); //debug
     if (!jwt) throw new Error('No taken provided');
 
     //1. get all posts and add to context
@@ -89,6 +90,29 @@ export const getTrendingTags = async ({ jwt }: TakenInterface) => {
     if (!response) throw new Error('Failed to get trending tags');
 
     return response.data.TrendingHashtags;
+  } catch (err) {
+    console.log('err', JSON.stringify(err)); //debug
+  }
+};
+
+export const getTrendingAccounts = async ({ jwt }: TakenInterface) => {
+  try {
+    console.log('getTrendingAccounts triggered'); //debug
+    if (!jwt) throw new Error('No taken provided');
+
+    //1. get all posts and add to context
+    const response = await client.query({
+      query: QUERY_TRENDING_ACCOUNTS,
+      context: {
+        headers: {
+          authorization: 'Bearer ' + jwt,
+        },
+      },
+    });
+
+    if (!response) throw new Error('Failed to get trending accounts');
+
+    return response.data.UsersByScore;
   } catch (err) {
     console.log('err', JSON.stringify(err)); //debug
   }

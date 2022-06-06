@@ -8,11 +8,15 @@ import AppHead from '../components/AppHead';
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 // 📌 HELPERS
-import { appLoginAction, getTrendingTags } from '../helpers';
+import {
+  appLoginAction,
+  getTrendingTags,
+  getTrendingAccounts,
+} from '../helpers';
 import { HomeInterface } from '../interfaces';
-import { jwt, tags } from '../apollo/cache';
+import { jwt, tags, accounts } from '../apollo/cache';
 
-const Home: NextPage = ({ taken, hasTags }: HomeInterface) => {
+const Home: NextPage = ({ taken, hasTags, users }: HomeInterface) => {
   // --------------------------------------------------------------------------------
   // 📌  MAIN APP EXIT COMPONENT
   // --------------------------------------------------------------------------------
@@ -21,9 +25,11 @@ const Home: NextPage = ({ taken, hasTags }: HomeInterface) => {
     // 📌 set available initial data to apollo state
     if (taken) jwt(taken);
     if (hasTags) tags(hasTags);
+    if (users) accounts(users);
   }, [taken]);
 
-  // console.log('🐞 tags', hasTags);
+  // console.log('🐞 JSON', JSON.stringify(users)); //debug
+  console.log('🐞 props', users); //debug
 
   return (
     <ApolloProvider client={client}>
@@ -64,6 +70,7 @@ export const getServerSideProps = async (context: any) => {
   // --------------------------------------------------------------------------------
   let taken: string = '';
   let hasTags = '';
+  let users = '';
 
   try {
     // 📌 app login action to retrieve jwt
@@ -72,6 +79,7 @@ export const getServerSideProps = async (context: any) => {
       password: process.env.LOGIN_PASSWORD,
     });
     hasTags = await getTrendingTags({ jwt: taken });
+    users = await getTrendingAccounts({ jwt: taken });
   } catch (error) {
     console.log('🐞 SERVER SIDE ERROR', error);
   }
@@ -80,6 +88,7 @@ export const getServerSideProps = async (context: any) => {
     props: {
       taken,
       hasTags,
+      users,
     },
   };
 };

@@ -1,3 +1,8 @@
+/*  variables */
+:root {
+  --avatar: 40px;
+}
+
 .side-menu-title {
   font-size: 16px;
   font-weight: 700;
@@ -10,4 +15,33 @@
   display: flex;
   padding: 5px 0;
   cursor: pointer;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.avatar-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  width: var(--avatar);
+  height: var(--avatar);
+  border: 1px solid #d8d8d8;
+}
+
+/* 📌 add css snap to place effect  */
+.accounts-container {
+  position: relative;
+  /* overflow: hidden; */
+  height: calc(var(--avatar) * 8 + 20px);
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+/* add predefined height to inner components */
+.section {
+  height: 40px;
+  display: flex;
+  scroll-snap-align: start;
+  margin: 5px 0;
 }

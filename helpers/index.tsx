@@ -4,6 +4,7 @@ import {
   redirectAction,
   getPostsWithFilter,
   getTrendingTags,
+  getTrendingAccounts,
 } from './actions';
 
 // --------------------------------------------------------------------------------
@@ -16,4 +17,5 @@ export {
   redirectAction,
   getPostsWithFilter,
   getTrendingTags,
+  getTrendingAccounts,
 };

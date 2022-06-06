@@ -17,6 +17,8 @@
 }
 
 .side-bar {
+  position: relative;
+  overflow: hidden;
   width: fit-content;
   width: 300px;
   background-color: rgb(255, 255, 255);

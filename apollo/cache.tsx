@@ -1,5 +1,5 @@
 import { InMemoryCache, makeVar } from '@apollo/client';
-import { TagInterface } from '../interfaces';
+import { TagInterface, AccountsInterface } from '../interfaces';
 
 // --------------------------------------------------------------------------------
 // 📌 Create & initialize reactive variables
@@ -7,6 +7,7 @@ import { TagInterface } from '../interfaces';
 
 export const jwt = makeVar<string | null>(null);
 export const tags = makeVar<TagInterface | null>(null);
+export const accounts = makeVar<AccountsInterface | null>(null);
 
 // --------------------------------------------------------------------------------
 // 📌  Add to apollo cash reactive variables
@@ -18,8 +19,11 @@ export const cache: InMemoryCache = new InMemoryCache({
         jwt() {
           return jwt();
         },
-        secret() {
+        tags() {
           return tags();
+        },
+        accounts() {
+          return accounts();
         },
       },
     },

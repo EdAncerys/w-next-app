@@ -60,3 +60,18 @@ export const QUERY_TAGS = gql`
     }
   }
 `;
+
+export const QUERY_TRENDING_ACCOUNTS = gql`
+  query getTrendingUsers {
+    UsersByScore(limit: 25, where: { lastpost_gt: 0 }) {
+      id
+      validated
+      firstName
+      lastName
+      username
+      picture {
+        url
+      }
+    }
+  }
+`;
