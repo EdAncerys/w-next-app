@@ -1,5 +1,6 @@
 :root {
   --icon: 28px;
+  --avatar: 40px;
 }
 
 .actions-wrapper {
@@ -10,11 +11,20 @@
   background-color: #fd1053;
   opacity: 0.7;
 }
+.avatar,
 .icon {
   cursor: pointer;
   width: var(--icon);
   height: var(--icon);
   transition: all 0.3s ease-in-out;
+}
+.avatar {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  width: var(--avatar);
+  height: var(--avatar);
+  border: 1px solid #d8d8d8;
 }
 .verified-icon {
   width: calc(var(--icon) / 2);

@@ -18,23 +18,8 @@ const UserProfile = ({ post }: PostInterface) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        cursor: 'pointer',
-      }}
-      onClick={handleProfileAction}
-    >
-      <div
-        className="icon"
-        style={{
-          position: 'relative',
-          borderRadius: '50%',
-          overflow: 'hidden',
-          border: `1px solid ${appColors.silver}`,
-        }}
-      >
+    <div className="flex" onClick={handleProfileAction}>
+      <div className="avatar">
         <Image src={AVATAR} objectFit="cover" width="100%" height="100%" />
       </div>
       <div className="post-username" style={{ padding: '0px 12px' }}>
