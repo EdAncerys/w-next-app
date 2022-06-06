@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { tags } from '../apollo/cache';
 import { useReactiveVar } from '@apollo/client';
-// CONTEXT
+// --------------------------------------------------------------------------------
+import { tags } from '../apollo/cache';
 import { redirectAction, appColors } from '../helpers';
 
 const HashTags = ({}) => {
@@ -12,7 +12,7 @@ const HashTags = ({}) => {
   const [posts, setPost] = useState<null | string>(null);
   const contextTags = useReactiveVar(tags);
 
-  // HELPERS
+  // --------------------------------------------------------------------------------
   const handleDownloadApp = () => {
     // redirectAction({ router, path: `/download` });
     console.log('🐞  get app');

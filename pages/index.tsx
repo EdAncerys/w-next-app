@@ -3,20 +3,22 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import { ApolloProvider } from '@apollo/client';
 import { client } from '../apollo';
-// COMPONENTS
+// --------------------------------------------------------------------------------
 import AppHead from '../components/AppHead';
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
-// 📌 HELPERS
+import Post from '../components/post/Post';
+// --------------------------------------------------------------------------------
 import {
   appLoginAction,
   getTrendingTags,
   getTrendingAccounts,
+  getFeedData,
 } from '../helpers';
 import { HomeInterface } from '../interfaces';
-import { jwt, tags, accounts } from '../apollo/cache';
+import { jwt, tags, accounts, feed } from '../apollo/cache';
 
-const Home: NextPage = ({ taken, hasTags, users }: HomeInterface) => {
+const Home: NextPage = ({ taken, hashTags, users, posts }: HomeInterface) => {
   // --------------------------------------------------------------------------------
   // 📌  MAIN APP EXIT COMPONENT
   // --------------------------------------------------------------------------------
@@ -24,12 +26,13 @@ const Home: NextPage = ({ taken, hasTags, users }: HomeInterface) => {
   useEffect(() => {
     // 📌 set available initial data to apollo state
     if (taken) jwt(taken);
-    if (hasTags) tags(hasTags);
+    if (hashTags) tags(hashTags);
     if (users) accounts(users);
-  }, [taken]);
+    if (posts) feed(posts);
+  }, [taken, hashTags, users, posts]);
 
-  // console.log('🐞 JSON', JSON.stringify(users)); //debug
-  console.log('🐞 props', users); //debug
+  // console.log('🐞 JSON for interfaces', JSON.stringify(posts)); //debug
+  console.log('🐞 props', posts); //debug
 
   return (
     <ApolloProvider client={client}>
@@ -44,19 +47,7 @@ const Home: NextPage = ({ taken, hasTags, users }: HomeInterface) => {
             <SideBar />
           </div>
           <div className="feed-wrapper">
-            <Image src="/png/wunder.png" width={200} height={200} />
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div
-              className="main-btn"
-              onClick={() => {
-                // get random number from 1 to 10
-                const random = Math.floor(Math.random() * 10) + 1;
-              }}
-            >
-              update
-            </div>
+            <Post />
           </div>
         </div>
       </div>
@@ -69,8 +60,9 @@ export const getServerSideProps = async (context: any) => {
   // 📌  Server side calls & return via props
   // --------------------------------------------------------------------------------
   let taken: string = '';
-  let hasTags = '';
+  let hashTags = '';
   let users = '';
+  let posts = '';
 
   try {
     // 📌 app login action to retrieve jwt
@@ -78,8 +70,13 @@ export const getServerSideProps = async (context: any) => {
       identifier: process.env.LOGIN_USERNAME,
       password: process.env.LOGIN_PASSWORD,
     });
-    hasTags = await getTrendingTags({ jwt: taken });
+    hashTags = await getTrendingTags({ jwt: taken });
     users = await getTrendingAccounts({ jwt: taken });
+    posts = await getFeedData({
+      jwt: taken,
+      startFrom: 0,
+      limit: 15, // initial feed size. Config in context
+    });
   } catch (error) {
     console.log('🐞 SERVER SIDE ERROR', error);
   }
@@ -87,8 +84,9 @@ export const getServerSideProps = async (context: any) => {
   return {
     props: {
       taken,
-      hasTags,
+      hashTags,
       users,
+      posts,
     },
   };
 };

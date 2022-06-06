@@ -1,10 +1,10 @@
-import { NextRouter } from 'next/router';
 import {
   client,
   MUTATION_LOG_IN,
   QUERY_ALL_POSTS,
   QUERY_TAGS,
   QUERY_TRENDING_ACCOUNTS,
+  QUERY_GET_CHUNK_OF_POSTS,
 } from '../apollo';
 import { jwt } from '../apollo/cache';
 import {
@@ -143,4 +143,11 @@ export const redirectAction = ({ router, path }: RedirectInterface) => {
   router.push({
     pathname: path,
   });
+};
+
+export const giveMediaType = (mime: string | undefined) => {
+  if (mime === undefined) return;
+
+  const myArr = mime.split('/');
+  return myArr[0] === 'image' ? false : true;
 };

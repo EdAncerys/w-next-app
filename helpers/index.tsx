@@ -5,6 +5,8 @@ import {
   getPostsWithFilter,
   getTrendingTags,
   getTrendingAccounts,
+  getFeedData,
+  giveMediaType,
 } from './actions';
 
 // --------------------------------------------------------------------------------
@@ -18,4 +20,6 @@ export {
   getPostsWithFilter,
   getTrendingTags,
   getTrendingAccounts,
+  getFeedData,
+  giveMediaType,
 };

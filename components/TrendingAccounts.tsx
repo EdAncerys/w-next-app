@@ -4,13 +4,12 @@ import Image from 'next/image';
 import { useReactiveVar } from '@apollo/client';
 // --------------------------------------------------------------------------------
 import { accounts } from '../apollo/cache';
-import { redirectAction, appColors } from '../helpers';
+import { redirectAction } from '../helpers';
 
 const TrendingAccounts = ({}) => {
   const router = useRouter();
 
   const [posts, setPost] = useState<null | string>(null);
-  const iconWidth = 40;
   const contextAccounts = useReactiveVar(accounts);
 
   // HELPERS
@@ -59,8 +58,8 @@ const TrendingAccounts = ({}) => {
                     <Image
                       src={avatar}
                       objectFit="cover"
-                      width={iconWidth}
-                      height={iconWidth}
+                      width="100%"
+                      height="100%"
                     />
                   </div>
                   <div className="flex user-details">
@@ -74,12 +73,14 @@ const TrendingAccounts = ({}) => {
                     </div>
 
                     {isValidated && (
-                      <Image
-                        src="/icons/badge.svg"
-                        objectFit="cover"
-                        width={iconWidth / 2}
-                        height={iconWidth / 2}
-                      />
+                      <div className="verified-icon">
+                        <Image
+                          src="/icons/badge.svg"
+                          objectFit="cover"
+                          width="100%"
+                          height="100%"
+                        />
+                      </div>
                     )}
                   </div>
                 </div>

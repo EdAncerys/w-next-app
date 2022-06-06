@@ -1,0 +1,53 @@
+:root {
+  --icon: 28px;
+}
+
+.actions-wrapper {
+  justify-content: space-between;
+  padding: 18px 10px;
+  margin-left: var(--icon);
+  border-radius: var(--icon);
+  background-color: #fd1053;
+  opacity: 0.7;
+}
+.icon {
+  cursor: pointer;
+  width: var(--icon);
+  height: var(--icon);
+  transition: all 0.3s ease-in-out;
+}
+.verified-icon {
+  width: calc(var(--icon) / 2);
+  height: calc(var(--icon) / 2);
+}
+.icon:hover {
+  transform: scale(0.95);
+}
+.icon-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  color: #fff;
+  margin-top: 5px;
+  width: 100%;
+}
+.icon-wrapper {
+  display: flex;
+  background-color: #fd1053;
+  padding: 8px;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container > .icon-title {
+  color: #222;
+  font-size: 12px;
+  font-weight: 400;
+}

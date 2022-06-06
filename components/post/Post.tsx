@@ -1,21 +1,31 @@
-import { useEffect, useState, useRef } from 'react';
-import FeedElement from './post/FeedElement';
-import Loading from './Loading';
-// CONTEXT --------------------------------------------
-import { useAppDispatch, useAppState, getFeedDataAction } from '../context';
+import { useState, useEffect, useRef } from 'react';
+import { useReactiveVar } from '@apollo/client';
+// --------------------------------------------------------------------------------
+import FeedElement from './FeedElement';
+import Loading from '../Loading';
+// --------------------------------------------------------------------------------
+import { feed, jwt } from '../../apollo/cache';
+import { PostInterface } from '../../interfaces';
+import { getFeedData } from '../../helpers';
 
-const Feed = ({ initialFeed }) => {
-  const dispatch = useAppDispatch();
-  const { isLoading, initialFeedLimit, jwt } = useAppState();
+const Feed = () => {
+  const contextFeed = useReactiveVar(feed);
+  const [posts, setPosts] = useState<PostInterface | null>(null);
+  const [isFetching, setFetching] = useState<true | false>(false);
 
-  const [posts, setPosts] = useState(initialFeed);
-  const [isFetching, setFetching] = useState(null);
-
-  const startFrom = useRef(initialFeedLimit);
+  const startFrom = useRef(15);
   const feedLimit = useRef(5);
 
+  interface HandlerInterface {
+    top: boolean;
+  }
+
+  useEffect(() => {
+    if (contextFeed) setPosts(contextFeed);
+  }, [contextFeed]);
+
   // HANDLERS --------------------------------------------------------
-  const getPostsHandler = async ({ top }) => {
+  const getPostsHandler = async ({ top }: HandlerInterface) => {
     if (!posts) return null;
 
     try {
@@ -26,14 +36,14 @@ const Feed = ({ initialFeed }) => {
         startFrom.current = 0;
         feedLimit.current = 5; // initial feed size on top reach reset
       }
-      console.log('🐞 offset value', startFrom.current);
+      // console.log('🐞 offset value', startFrom.current);
 
-      const postData = await getFeedDataAction({
+      const postData = await getFeedData({
         startFrom: startFrom.current,
         limit: feedLimit.current,
-        jwt,
+        jwt: jwt(),
       });
-      let newPostData = [...posts, ...postData];
+      let newPostData = [posts, ...postData];
       if (top) newPostData = postData;
       setPosts(newPostData);
 
@@ -44,7 +54,7 @@ const Feed = ({ initialFeed }) => {
     } catch (error) {
       console.error(error);
     } finally {
-      setFetching(null);
+      setFetching(false);
     }
   };
 
@@ -52,8 +62,7 @@ const Feed = ({ initialFeed }) => {
 
   const handleScroll = ({ currentTarget }) => {
     // ⬇️ handle refetch on bottom reached
-    console.log('🐞 ', currentTarget);
-    console.log('🐞 ', currentTarget.scrollTop);
+    // console.log('🐞 ', currentTarget);
 
     const scrollHeight = currentTarget.scrollHeight;
     const currentHeight = Math.ceil(
@@ -75,8 +84,8 @@ const Feed = ({ initialFeed }) => {
 
   return (
     <div onScroll={handleScroll} style={{ overflowY: 'scroll' }}>
-      {posts.map((post, index) => {
-        return <FeedElement post={post} key={index} />;
+      {posts.map((post, key) => {
+        return <FeedElement post={post} key={key} />;
       })}
 
       {isFetching && (

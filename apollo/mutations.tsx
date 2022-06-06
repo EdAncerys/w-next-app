@@ -75,3 +75,78 @@ export const QUERY_TRENDING_ACCOUNTS = gql`
     }
   }
 `;
+
+export const QUERY_GET_CHUNK_OF_POSTS = gql`
+  query getPosts($draft: Boolean, $startFrom: Int, $limit: Int) {
+    postsWithStatistics(
+      limit: $limit
+      sort: "updated_at:desc"
+      start: $startFrom
+      where: { draft: $draft }
+    ) {
+      id
+      postType
+      title
+      body
+      people
+      planet
+      canVolunteer
+      AdditionalNotes
+      statistics {
+        applauds
+        commends
+        coins
+        comments
+        shoutouts
+      }
+      picture {
+        url
+        mime
+        formats
+      }
+      projectMedia {
+        url
+        previewUrl
+        formats
+        mime
+      }
+      taggedUsers {
+        id
+      }
+      sponsors {
+        id
+      }
+      commentsOnMe {
+        id
+      }
+      known_tags {
+        id
+        tagname
+      }
+      user {
+        id
+        username
+        firstName
+        lastName
+        strapline
+        confirmed
+        profileType
+        validated
+        followsme {
+          id
+        }
+        picture {
+          url
+          formats
+        }
+        interests {
+          id
+          picture {
+            url
+            formats
+          }
+        }
+      }
+    }
+  }
+`;

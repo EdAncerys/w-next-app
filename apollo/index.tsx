@@ -4,6 +4,7 @@ import {
   QUERY_ALL_POSTS,
   QUERY_TAGS,
   QUERY_TRENDING_ACCOUNTS,
+  QUERY_GET_CHUNK_OF_POSTS,
 } from './mutations';
 
 // --------------------------------------------------------------------------------
@@ -16,4 +17,5 @@ export {
   QUERY_ALL_POSTS,
   QUERY_TAGS,
   QUERY_TRENDING_ACCOUNTS,
+  QUERY_GET_CHUNK_OF_POSTS,
 };
