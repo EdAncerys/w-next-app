@@ -1,0 +1,27 @@
+/* media queries */
+@media only screen and (max-width: 480px) {
+  .side-bar {
+    display: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .user-details,
+  .search-container {
+    display: none;
+  }
+}
+@media only screen and (max-width: 960px) {
+  .mobile-only {
+    display: block;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .mobile-only {
+    display: block;
+  }
+}
+@media only screen and (max-width: 1536px) {
+  .mobile-only {
+    display: block;
+  }
+}

@@ -121,7 +121,10 @@ const SearchBox = () => {
   };
 
   return (
-    <div className="flex-col" style={{ alignItems: 'center' }}>
+    <div
+      className="flex-col search-container"
+      style={{ alignItems: 'center', margin: '0 15px' }}
+    >
       <div
         className="input-wrapper"
         style={{

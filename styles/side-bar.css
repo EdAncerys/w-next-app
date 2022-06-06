@@ -28,6 +28,7 @@
   width: var(--avatar);
   height: var(--avatar);
   border: 1px solid #d8d8d8;
+  margin-right: 5px;
 }
 
 /* 📌 add css snap to place effect  */

@@ -6,7 +6,7 @@ import { redirectAction } from '../helpers';
 
 const SideBar = ({}) => {
   return (
-    <div className="flex-col">
+    <div className="flex-col side-bar">
       <TrendingAccounts />
       <HashTags />
     </div>

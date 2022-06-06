@@ -64,7 +64,7 @@ const TrendingAccounts = ({}) => {
                       height={iconWidth}
                     />
                   </div>
-                  <div className="flex">
+                  <div className="flex user-details">
                     <div className="flex-col" style={{ padding: '0 10px' }}>
                       <div
                         style={{ fontSize: 11 }}
