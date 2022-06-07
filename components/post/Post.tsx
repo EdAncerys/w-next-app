@@ -15,6 +15,7 @@ const Feed = () => {
 
   const startFrom = useRef(15);
   const feedLimit = useRef(5);
+  const scrollDirection = useRef(0);
 
   interface HandlerInterface {
     top: boolean;
@@ -62,19 +63,24 @@ const Feed = () => {
 
   const handleScroll = ({ currentTarget }) => {
     // ⬇️ handle refetch on bottom reached
-    // console.log('🐞 ', currentTarget.scrollTop);
+    const scroll = currentTarget.scrollTop;
+    // if scroll progress is > 350 hide navbar
+    if (scroll > 350) {
+      console.log('🐞 ', scroll);
+      document.querySelector('.nav-container').classList.add('slide-up');
+    } else {
+      document.querySelector('.nav-container').classList.remove('slide-up');
+    }
 
     const scrollHeight = currentTarget.scrollHeight;
-    const currentHeight = Math.ceil(
-      currentTarget.scrollTop + window.innerHeight
-    );
+    const currentHeight = Math.ceil(scroll + window.innerHeight);
 
     // ⬇️  on bottom reach fetch new chunk of posts
     if (currentHeight >= scrollHeight && !isFetching) {
       getPostsHandler({ top: false });
     }
     // ⬇️  on top reach iterate the process form the begging
-    if (currentTarget.scrollTop === 0) {
+    if (scroll === 0) {
       // make a new call & fetch latests posts
       getPostsHandler({ top: true });
     }
@@ -85,7 +91,7 @@ const Feed = () => {
   return (
     <div onScroll={handleScroll} className="post-wrapper">
       {posts.map((post, key) => {
-        return <FeedElement post={post} key={key} />;
+        return <FeedElement post={post} key={key} item={key} />;
       })}
 
       {isFetching && (
