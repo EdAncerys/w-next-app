@@ -3,6 +3,8 @@
   --avatar: 40px;
   --media-width: 216px;
   --media-height: 384px;
+  --media-post-width: 800px;
+  --media-post-height: 100vh;
 }
 
 .post-content {
@@ -42,10 +44,11 @@
   cursor: pointer;
 }
 .post-media {
-  width: var(--media-height);
-  height: var(--media-width);
+  width: var(--media-post-width);
+  height: var(--media-post-height);
 }
 /* define component size for video feed */
+.post-media video,
 .feed-media video {
   object-fit: cover;
 }
@@ -98,6 +101,8 @@
 .icon-wrapper {
   display: flex;
   background-color: #fd1053;
+  width: var(--avatar);
+  height: var(--avatar);
   padding: 8px;
   border-radius: 50%;
   opacity: 0.7;
@@ -113,4 +118,10 @@
   color: #222;
   font-size: 12px;
   font-weight: 400;
+}
+
+.post-username {
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
 }

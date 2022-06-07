@@ -43,38 +43,28 @@ const HomeScreen = ({ post, id }) => {
   if (isVideo) imageUrl = null;
   if (user && user.username) pageTitle = `@${user.username}`;
 
-  // HANDLERS -----------------------------------------------------------------------
+  // --------------------------------------------------------------------------------
   const handleClosePostAction = () => {
     const path = `/`;
     router.push(path);
   };
 
-  // SERVERS ---------------------------------------------------------------------
+  // --------------------------------------------------------------------------------
   const ServeClosePost = () => {
     return (
-      <div
-        className="flex-col"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          padding: '2em',
-          zIndex: 1,
-        }}
-      >
+      <div className="close-icon">
         <div
+          className="btn-icon flex"
           style={{
-            display: 'flex',
-            cursor: 'pointer',
             backgroundColor: appColors.primaryDark,
-            padding: 5,
+            color: appColors.white,
             borderRadius: '50%',
+            padding: 5,
           }}
+          onClick={handleClosePostAction}
         >
           <CloseIcon
-            onClick={handleClosePostAction}
             style={{
-              color: appColors.white,
               fontSize: 28,
             }}
           />
@@ -86,7 +76,7 @@ const HomeScreen = ({ post, id }) => {
   const ServeFeedData = () => {
     return (
       <div
-        className="flex"
+        className="flex post-feed"
         style={{
           height: '100vh',
           minWidth: 300,
@@ -124,21 +114,16 @@ const HomeScreen = ({ post, id }) => {
     <div>
       <AppHead title={pageTitle} image={imageUrl} body={body} />
 
-      <div
-        className="flex"
-        style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}
-      >
+      <div className="app-wrapper" style={{ flexDirection: 'row' }}>
+        <ServeClosePost />
         <div
           className="flex"
           style={{
-            position: 'relative',
-            height: '100vh',
             flex: 2,
             justifyContent: 'center',
             backgroundColor: appColors.black,
           }}
         >
-          <ServeClosePost />
           <PostMedia post={post} isPost />
         </div>
 
@@ -151,7 +136,7 @@ const HomeScreen = ({ post, id }) => {
 // --------------------------------------------------------------------------------
 // 📌  getStaticProps & getServerSideProps can only be exported from a page
 // --------------------------------------------------------------------------------
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async (context: any) => {
   // server side prop data
   let taken = '';
   let post = null;
@@ -182,15 +167,5 @@ export const getServerSideProps = async (context) => {
     },
   };
 };
-
-// --------------------------------------------------------------------------------
-// 📌  use memo hook for performance optimization if component is not changing
-// --------------------------------------------------------------------------------
-
-// const areEqual = ({ post: prevPost }, { post }) => {
-//   return post == prevPost;
-// };
-
-// export default memo(HomeScreen, areEqual);
 
 export default HomeScreen;

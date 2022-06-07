@@ -23,7 +23,7 @@ const HomeScreen = ({}) => {
   // SERVERS ---------------------------------------------------------------------
   const ServeClosePost = () => {
     return (
-      <div className="download-close-icon">
+      <div className="close-icon">
         <div
           className="btn-icon flex"
           style={{
