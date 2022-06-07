@@ -12,7 +12,6 @@ const FeedElement = ({ post, item }) => {
   const router = useRouter();
 
   const { id } = post;
-  console.log('🐞 ', item);
 
   // --------------------------------------------------------------------------------
   const handlePostAction = () => {

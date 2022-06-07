@@ -15,7 +15,8 @@ const Feed = () => {
 
   const startFrom = useRef(15);
   const feedLimit = useRef(5);
-  const scrollDirection = useRef(0);
+  const scrollProgress = useRef(0);
+  const startPoint = useRef(0);
 
   interface HandlerInterface {
     top: boolean;
@@ -64,19 +65,29 @@ const Feed = () => {
   const handleScroll = ({ currentTarget }) => {
     // ⬇️ handle refetch on bottom reached
     const scroll = currentTarget.scrollTop;
-    // if scroll progress is > 350 hide navbar
-    if (scroll > 350) {
-      console.log('🐞 ', scroll);
-      document.querySelector('.nav-container').classList.add('slide-up');
+    let isHide = scroll > 350;
+
+    // detect when scroll direction is changed
+    if (scroll > scrollProgress.current) {
+      // console.log('🐞 scroll down');
+      if (isHide) {
+        document
+          .querySelector('.nav-container')
+          .classList.add('no-overflow', 'slide-up');
+      }
     } else {
-      document.querySelector('.nav-container').classList.remove('slide-up');
+      // console.log('🐞 scroll up');
+      document
+        .querySelector('.nav-container')
+        .classList.remove('no-overflow', 'slide-up');
     }
 
     const scrollHeight = currentTarget.scrollHeight;
     const currentHeight = Math.ceil(scroll + window.innerHeight);
 
     // ⬇️  on bottom reach fetch new chunk of posts
-    if (currentHeight >= scrollHeight && !isFetching) {
+    let bottomOffset = 100;
+    if (currentHeight >= scrollHeight - bottomOffset && !isFetching) {
       getPostsHandler({ top: false });
     }
     // ⬇️  on top reach iterate the process form the begging
@@ -84,6 +95,9 @@ const Feed = () => {
       // make a new call & fetch latests posts
       getPostsHandler({ top: true });
     }
+
+    // update scroll progress
+    scrollProgress.current = scroll;
   };
 
   // SERVERS ---------------------------------------------------------

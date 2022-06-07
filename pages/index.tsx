@@ -73,7 +73,7 @@ export const getServerSideProps = async (context: any) => {
     users = await getTrendingAccounts({ jwt: taken });
     posts = await getFeedData({
       jwt: taken,
-      startFrom: 150,
+      startFrom: 0,
       limit: 15, // initial feed size. Config in context
     });
   } catch (error) {

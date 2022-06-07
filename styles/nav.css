@@ -7,7 +7,6 @@
 
 .nav-container {
   position: fixed;
-  overflow: hidden;
   top: 0;
   left: 0;
   width: 100%;
@@ -48,7 +47,7 @@
 .dropdown-wrapper {
   position: absolute;
   z-index: 99;
-  top: var(--input-height);
+  top: calc(var(--input-height));
   width: var(--input-width);
 }
 .dropdown {
