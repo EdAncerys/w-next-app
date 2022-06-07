@@ -1,0 +1,33 @@
+.download-close-icon {
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  padding: 4em;
+  cursor: pointer;
+}
+
+.download-content {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  max-width: 480px;
+  padding: 20vh 0 2em 4em;
+  height: 100%;
+}
+
+.app-devices,
+.download-app-logo {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 2em 0;
+}
+
+.download-app-logo {
+  height: 100%;
+  align-items: end;
+}

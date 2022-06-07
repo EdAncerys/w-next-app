@@ -5,7 +5,6 @@ import UserProfile from './UserProfile';
 import PostContent from './PostContent';
 import PostMedia from './PostMedia';
 // --------------------------------------------------------------------------------
-import { PostInterface } from '../../Interfaces';
 import { redirectAction } from '../../helpers';
 
 const FeedElement = ({ post }) => {

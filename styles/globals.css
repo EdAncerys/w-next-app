@@ -25,6 +25,7 @@ a {
 @import './buttons.css';
 @import './side-bar.css';
 @import './feed.css';
+@import './download.css';
 
 /* MEDIA QUERIES */
 @import './media-queries.css';
