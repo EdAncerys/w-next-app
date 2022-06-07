@@ -10,7 +10,7 @@ import { getFeedData } from '../../helpers';
 
 const Feed = () => {
   const contextFeed = useReactiveVar(feed);
-  const [posts, setPosts] = useState<PostInterface | null>(null);
+  const [posts, setPosts] = useState<PostInterface[] | null>(null);
   const [isFetching, setFetching] = useState<true | false>(false);
 
   const startFrom = useRef(15);
@@ -43,7 +43,7 @@ const Feed = () => {
         limit: feedLimit.current,
         jwt: jwt(),
       });
-      let newPostData = [posts, ...postData];
+      let newPostData = [...posts, ...postData];
       if (top) newPostData = postData;
       setPosts(newPostData);
 
