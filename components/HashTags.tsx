@@ -14,8 +14,7 @@ const HashTags = ({}) => {
 
   // --------------------------------------------------------------------------------
   const handleDownloadApp = () => {
-    // redirectAction({ router, path: `/download` });
-    console.log('🐞  get app');
+    redirectAction({ router, path: `/download` });
   };
 
   useEffect(() => {

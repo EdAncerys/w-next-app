@@ -24,6 +24,7 @@ const Home: NextPage = ({ taken, hashTags, users, posts }: HomeInterface) => {
 
   useEffect(() => {
     // 📌 set available initial data to apollo state
+
     if (taken) jwt(taken);
     if (hashTags) tags(hashTags);
     if (users) accounts(users);
@@ -31,7 +32,7 @@ const Home: NextPage = ({ taken, hashTags, users, posts }: HomeInterface) => {
   }, [taken, hashTags, users, posts]);
 
   // console.log('🐞 JSON for interfaces', JSON.stringify(posts)); //debug
-  console.log('🐞 props', posts); //debug
+  // console.log('🐞 props', posts); //debug
 
   return (
     <ApolloProvider client={client}>
