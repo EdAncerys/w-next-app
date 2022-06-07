@@ -5,11 +5,12 @@ import { useReactiveVar } from '@apollo/client';
 // --------------------------------------------------------------------------------
 import { tags } from '../apollo/cache';
 import { redirectAction, appColors } from '../helpers';
+import { TagInterface } from '../interfaces';
 
 const HashTags = ({}) => {
   const router = useRouter();
 
-  const [posts, setPost] = useState<null | string>(null);
+  const [posts, setPost] = useState<TagInterface[]>([]);
   const contextTags = useReactiveVar(tags);
 
   // --------------------------------------------------------------------------------
