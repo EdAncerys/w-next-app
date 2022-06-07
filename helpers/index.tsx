@@ -7,6 +7,7 @@ import {
   getTrendingAccounts,
   getFeedData,
   giveMediaType,
+  getOnePostById,
 } from './actions';
 
 // --------------------------------------------------------------------------------
@@ -22,4 +23,5 @@ export {
   getTrendingAccounts,
   getFeedData,
   giveMediaType,
+  getOnePostById,
 };

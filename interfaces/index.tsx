@@ -140,3 +140,8 @@ export enum LargeMIME {
   ImagePNG = 'image/png',
 }
 // --------------------------------------------------------------------------------
+
+export interface PostByIdInterface {
+  jwt: string;
+  id: string;
+}

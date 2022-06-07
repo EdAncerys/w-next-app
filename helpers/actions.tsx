@@ -5,6 +5,7 @@ import {
   QUERY_TAGS,
   QUERY_TRENDING_ACCOUNTS,
   QUERY_GET_CHUNK_OF_POSTS,
+  QUERY_GET_POST_BY_ID,
 } from '../apollo';
 import { jwt } from '../apollo/cache';
 import {
@@ -13,6 +14,7 @@ import {
   RedirectInterface,
   FilterInterface,
   TakenInterface,
+  PostByIdInterface,
 } from '../interfaces';
 
 // --------------------------------------------------------------------------------
@@ -150,4 +152,28 @@ export const giveMediaType = (mime: string | undefined) => {
 
   const myArr = mime.split('/');
   return myArr[0] === 'image' ? false : true;
+};
+
+export const getOnePostById = async ({ id, jwt }: PostByIdInterface) => {
+  console.log('getOnePostByIdAction triggered'); //debug
+
+  try {
+    if (!jwt) throw new Error('No app taken not provided.');
+
+    const getPostByIdResponse = await client.query({
+      query: QUERY_GET_POST_BY_ID,
+      variables: { id },
+      context: {
+        headers: {
+          authorization: 'Bearer ' + jwt,
+        },
+      },
+    });
+
+    const post = getPostByIdResponse.data.postsWithStatistics[0];
+
+    return post;
+  } catch (error) {
+    console.log(error);
+  }
 };

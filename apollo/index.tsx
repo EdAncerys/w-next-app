@@ -5,6 +5,7 @@ import {
   QUERY_TAGS,
   QUERY_TRENDING_ACCOUNTS,
   QUERY_GET_CHUNK_OF_POSTS,
+  QUERY_GET_POST_BY_ID,
 } from './mutations';
 
 // --------------------------------------------------------------------------------
@@ -18,4 +19,5 @@ export {
   QUERY_TAGS,
   QUERY_TRENDING_ACCOUNTS,
   QUERY_GET_CHUNK_OF_POSTS,
+  QUERY_GET_POST_BY_ID,
 };

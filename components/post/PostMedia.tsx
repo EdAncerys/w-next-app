@@ -1,6 +1,10 @@
 import Image from 'next/image';
-import ReactPlayer from 'react-player';
 import { useRouter } from 'next/router';
+// --------------------------------------------------------------------------------
+// 📌  Import fixes React Hydration Error for ReactPlayer
+// --------------------------------------------------------------------------------
+import dynamic from 'next/dynamic';
+const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
 
 // --------------------------------------------------------------------------------
 import PostActions from './PostActions';

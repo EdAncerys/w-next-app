@@ -150,3 +150,159 @@ export const QUERY_GET_CHUNK_OF_POSTS = gql`
     }
   }
 `;
+
+export const QUERY_GET_POST_BY_ID = gql`
+  query getOnePost($id: ID!) {
+    postsWithStatistics(where: { id: $id }) {
+      id
+      postType
+      title
+      body
+      people
+      planet
+      canVolunteer
+      projectRaisesCoins
+      projectGoalAmount
+      projectGoalCurrent
+      eventTime
+      eventLocation
+      eventLat
+      eventLng
+      EventTimeEnd
+      eventCapacity
+      EventCapacityAllocated
+      eventText
+      eventURL
+      projectGoalText
+      projectGoalDeadline
+      AdditionalNotes
+      isEvent
+      CTAUrl
+      CTAButton
+      hasCallToAction
+      known_tags {
+        tagname
+      }
+      statistics {
+        applauds
+        commends
+        coins
+        comments
+        shoutouts
+      }
+      picture {
+        url
+        mime
+        formats
+      }
+      projectMedia {
+        url
+        previewUrl
+        formats
+        mime
+      }
+      taggedUsers {
+        id
+        username
+      }
+      over13
+      private
+      taggedCharity {
+        id
+        username
+        picture {
+          url
+          formats
+        }
+      }
+      sponsors {
+        id
+      }
+      user {
+        id
+        username
+        firstName
+        lastName
+        strapline
+        profileType
+        confirmed
+        verified
+        validated
+        followsme {
+          id
+        }
+        ifollow {
+          id
+        }
+        picture {
+          url
+          formats
+        }
+        interests {
+          id
+          title
+          picture {
+            url
+            formats
+          }
+        }
+      }
+      commentsOnMe {
+        id
+        body
+        user {
+          id
+          username
+          firstName
+          lastName
+          confirmed
+          strapline
+          profileType
+          validated
+          followsme {
+            id
+          }
+          picture {
+            url
+            formats
+          }
+          interests {
+            id
+            picture {
+              url
+              formats
+            }
+          }
+        }
+        commentsOnMe {
+          id
+          body
+          user {
+            id
+            username
+            firstName
+            lastName
+            confirmed
+            strapline
+            profileType
+            validated
+            followsme {
+              id
+            }
+            picture {
+              url
+              formats
+            }
+            interests {
+              id
+              picture {
+                url
+                formats
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
