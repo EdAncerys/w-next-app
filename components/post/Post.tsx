@@ -62,7 +62,7 @@ const Feed = () => {
 
   const handleScroll = ({ currentTarget }) => {
     // ⬇️ handle refetch on bottom reached
-    // console.log('🐞 ', currentTarget);
+    // console.log('🐞 ', currentTarget.scrollTop);
 
     const scrollHeight = currentTarget.scrollHeight;
     const currentHeight = Math.ceil(
@@ -83,7 +83,7 @@ const Feed = () => {
   // SERVERS ---------------------------------------------------------
 
   return (
-    <div onScroll={handleScroll} style={{ overflowY: 'scroll' }}>
+    <div onScroll={handleScroll} className="feed-wrapper">
       {posts.map((post, key) => {
         return <FeedElement post={post} key={key} />;
       })}

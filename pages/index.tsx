@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import type { NextPage } from 'next';
-import Image from 'next/image';
 import { ApolloProvider } from '@apollo/client';
 import { client } from '../apollo';
 // --------------------------------------------------------------------------------
@@ -42,7 +41,7 @@ const Home: NextPage = ({ taken, hashTags, users, posts }: HomeInterface) => {
         <div className="nav-container">
           <NavBar />
         </div>
-        <div className="content-wrapper pink">
+        <div className="content-wrapper">
           <div className="side-bar">
             <SideBar />
           </div>

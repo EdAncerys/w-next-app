@@ -10,7 +10,7 @@ import { PostInterface } from '../../interfaces';
 
 interface PostContentInterface {
   post: PostInterface;
-  isPost: boolean;
+  isPost?: boolean;
 }
 
 const PostMedia = ({ post, isPost }: PostContentInterface) => {

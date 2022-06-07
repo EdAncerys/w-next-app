@@ -5,7 +5,7 @@ import { PostInterface } from '../../interfaces';
 
 interface PostContentInterface {
   post: PostInterface;
-  isPost: boolean;
+  isPost?: boolean;
 }
 
 const PostContent = ({ post, isPost }: PostContentInterface) => {

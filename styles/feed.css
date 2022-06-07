@@ -24,6 +24,10 @@
   font-size: 14px;
   font-weight: 700;
 }
+.feed-wrapper {
+  height: 100%;
+  overflow-y: scroll;
+}
 .feed-media {
   position: relative;
   border-radius: 16px;

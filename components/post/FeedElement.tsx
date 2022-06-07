@@ -8,7 +8,7 @@ import PostMedia from './PostMedia';
 import { PostInterface } from '../../Interfaces';
 import { redirectAction } from '../../helpers';
 
-const FeedElement = ({ post }: PostInterface) => {
+const FeedElement = ({ post }) => {
   if (!post) return null;
   const router = useRouter();
 
@@ -22,7 +22,7 @@ const FeedElement = ({ post }: PostInterface) => {
   };
 
   return (
-    <div className="feed-wrapper">
+    <div>
       <div className="post-content" onClick={handlePostAction}>
         <UserProfile post={post} />
         <PostContent post={post} />

@@ -11,8 +11,6 @@
   display: flex;
   width: 100%;
   height: 100%;
-  /* overflow: hidden;
-  overflow-y: scroll; */
   margin-top: 60px; /* 60px for the header */
 }
 
@@ -31,7 +29,6 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  overflow-y: scroll;
   padding: 48px 5%;
   margin: 0 0 48px 0;
 }
