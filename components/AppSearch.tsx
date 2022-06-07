@@ -10,12 +10,12 @@ const SearchBox = () => {
   let jwt: string = 'taken';
 
   const [searchFilter, setFilter] = useState('');
-  const [postData, setData] = useState(null);
+  const [postData, setData] = useState([]);
 
   // HANDLERS
   const handleClearInput = () => {
     setFilter('');
-    setData(null);
+    setData([]);
   };
 
   interface PostFilterInterface {
@@ -37,7 +37,7 @@ const SearchBox = () => {
         setData(response);
       } else {
         // set data to null to prevent dropdown from showing up if no data is available
-        setData(null);
+        setData([]);
       }
     };
 
@@ -128,8 +128,8 @@ const SearchBox = () => {
       <div
         className="input-wrapper"
         style={{
-          borderBottomLeftRadius: postData ? 0 : 20,
-          borderBottomRightRadius: postData ? 0 : 20,
+          borderBottomLeftRadius: postData.length > 0 ? 0 : 20,
+          borderBottomRightRadius: postData.length > 0 ? 0 : 20,
         }}
       >
         {!searchFilter && <SearchIcon />}
@@ -146,7 +146,7 @@ const SearchBox = () => {
         />
         <ServeClearSearch />
       </div>
-      {postData && (
+      {postData.length > 0 && (
         <div className="dropdown-wrapper">
           <div className="dropdown">
             <div style={{ overflowY: 'auto' }}>
