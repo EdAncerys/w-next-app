@@ -13,7 +13,6 @@ const FeedElement = ({ post }) => {
   const router = useRouter();
 
   const { id } = post;
-  console.log('🐞 ', post); //debug
 
   // --------------------------------------------------------------------------------
   const handlePostAction = () => {
@@ -22,7 +21,7 @@ const FeedElement = ({ post }) => {
   };
 
   return (
-    <div>
+    <div className="feed-element">
       <div className="post-content" onClick={handlePostAction}>
         <UserProfile post={post} />
         <PostContent post={post} />

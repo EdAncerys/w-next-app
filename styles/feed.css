@@ -24,9 +24,14 @@
   font-size: 14px;
   font-weight: 700;
 }
-.feed-wrapper {
+.post-wrapper {
   height: 100%;
   overflow-y: scroll;
+}
+.feed-element {
+  padding: 48px 0;
+  max-width: 500px;
+  border-bottom: 1px solid #f2f2f2;
 }
 .feed-media {
   position: relative;

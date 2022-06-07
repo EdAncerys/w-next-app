@@ -83,7 +83,7 @@ const Feed = () => {
   // SERVERS ---------------------------------------------------------
 
   return (
-    <div onScroll={handleScroll} className="feed-wrapper">
+    <div onScroll={handleScroll} className="post-wrapper">
       {posts.map((post, key) => {
         return <FeedElement post={post} key={key} />;
       })}
