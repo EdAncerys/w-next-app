@@ -6,8 +6,14 @@ import PostContent from './PostContent';
 import PostMedia from './PostMedia';
 // --------------------------------------------------------------------------------
 import { redirectAction } from '../../helpers';
+import { PostInterface } from '../../interfaces';
 
-const FeedElement = ({ post, item }) => {
+interface FeedElementInterface {
+  post: PostInterface;
+  item: number;
+}
+
+const FeedElement = ({ post, item }: FeedElementInterface) => {
   if (!post) return null;
   const router = useRouter();
 
@@ -34,7 +40,10 @@ const FeedElement = ({ post, item }) => {
 // 📌  use memo hook for performance optimization if component is not changing
 // --------------------------------------------------------------------------------
 
-const areEqual = ({ post: prevPost }, { post }) => {
+const areEqual = (
+  { post: prevPost }: { post: PostInterface },
+  { post }: { post: PostInterface }
+) => {
   return post == prevPost;
 };
 

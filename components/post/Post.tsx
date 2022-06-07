@@ -10,20 +10,24 @@ import { getFeedData } from '../../helpers';
 
 const Feed = () => {
   const contextFeed = useReactiveVar(feed);
-  const [posts, setPosts] = useState<PostInterface[] | null>(null);
+  const [posts, setPosts] = useState<PostInterface[]>([]);
+
+
+
+
+
   const [isFetching, setFetching] = useState<true | false>(false);
 
   const startFrom = useRef(15);
   const feedLimit = useRef(5);
   const scrollProgress = useRef(0);
-  const startPoint = useRef(0);
 
   interface HandlerInterface {
     top: boolean;
   }
 
   useEffect(() => {
-    if (contextFeed) setPosts(contextFeed);
+    // if (contextFeed) setPosts(contextFeed);
   }, [contextFeed]);
 
   // HANDLERS --------------------------------------------------------
@@ -62,7 +66,7 @@ const Feed = () => {
 
   if (!posts) return <Loading />;
 
-  const handleScroll = ({ currentTarget }) => {
+  const handleScroll = ({ currentTarget }: {currentTarget: Element}) => {
     // ⬇️ handle refetch on bottom reached
     const scroll = currentTarget.scrollTop;
     let isHide = scroll > 350;
@@ -71,13 +75,13 @@ const Feed = () => {
     if (scroll > scrollProgress.current) {
       // console.log('🐞 scroll down');
       if (isHide) {
-        document
+        document?
           .querySelector('.nav-container')
           .classList.add('no-overflow', 'slide-up');
       }
     } else {
       // console.log('🐞 scroll up');
-      document
+      document?
         .querySelector('.nav-container')
         .classList.remove('no-overflow', 'slide-up');
     }
