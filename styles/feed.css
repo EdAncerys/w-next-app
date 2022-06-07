@@ -9,6 +9,7 @@
 
 .post-content {
   max-width: 500px;
+  cursor: pointer;
 }
 .post-body {
   /* 
