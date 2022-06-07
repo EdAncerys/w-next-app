@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-🤖 Wunder WebApp build with Next.js & typescript
+🤖 Wunder WebApp build with Next.js, GraphQL & typescript
 
 📌 Add all packages:
 
