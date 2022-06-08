@@ -51,7 +51,7 @@ const HomeScreen = ({}) => {
           style={{
             fontSize: 40,
             fontWeight: 700,
-            paddingBottom: '1em',
+            paddingBottom: '1vh',
           }}
         >
           Install App
@@ -60,7 +60,7 @@ const HomeScreen = ({}) => {
           style={{
             fontSize: 24,
             fontWeight: 400,
-            padding: '2em 0',
+            padding: '4vh 0',
           }}
         >
           This action is not supported on the current platform. Please install

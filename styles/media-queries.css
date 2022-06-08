@@ -47,4 +47,7 @@
     text-align: center;
     padding: 20vh 1em 1em;
   }
+  .close-icon {
+    padding: 2em;
+  }
 }
