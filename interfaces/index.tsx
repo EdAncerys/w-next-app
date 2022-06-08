@@ -44,7 +44,7 @@ export interface SecretsInterface {
   password: string | undefined;
 }
 export interface RedirectInterface {
-  router: NextRouter;
+  router: NextRouter | null;
   path: string;
 }
 

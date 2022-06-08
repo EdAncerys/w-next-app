@@ -1,9 +1,7 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-
 // --------------------------------------------------------------------------------
 import { PostInterface } from '../../interfaces';
-import { redirectAction } from '../../helpers';
+import { router } from '../../apollo/cache';
 
 interface PostContentInterface {
   post: PostInterface;
@@ -13,13 +11,13 @@ interface PostContentInterface {
 const PostContent = ({ post, isPost }: PostContentInterface) => {
   if (!post) return null;
 
-  const router = useRouter();
   const { id, title, body, people, known_tags } = post;
   // console.log('🐞 post', post); //debug
 
   // --------------------------------------------------------------------------------
   const handleDownloadApp = () => {
-    redirectAction({ router, path: `/download` });
+    const path = `/download`;
+    router()?.push(path);
   };
 
   // --------------------------------------------------------------------------------

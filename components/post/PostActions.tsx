@@ -1,8 +1,7 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 // --------------------------------------------------------------------------------
-import { redirectAction, appColors } from '../../helpers';
 import { PostInterface } from '../../interfaces';
+import { router } from '../../apollo/cache';
 
 interface PostActionsInterface {
   post: PostInterface;
@@ -12,7 +11,6 @@ interface PostActionsInterface {
 const PostActions = ({ post, isPost }: PostActionsInterface) => {
   if (!post) return null;
 
-  const router = useRouter();
   const { id, statistics } = post;
   const { applauds, coins, comments, shoutouts } = statistics;
 
@@ -20,12 +18,13 @@ const PostActions = ({ post, isPost }: PostActionsInterface) => {
   const handlePostAction = () => {
     // 📌 disable in isPost mode
     if (isPost) {
-      redirectAction({ router, path: `/download` });
+      const path = `/download`;
+      router()?.push(path);
       return;
     }
 
     const path = `/post/${id}`;
-    redirectAction({ router, path });
+    router()?.push(path);
   };
 
   if (isPost)

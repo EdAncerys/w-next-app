@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import type { NextPage } from 'next';
 import { ApolloProvider } from '@apollo/client';
 import { client } from '../apollo';
+import { useRouter } from 'next/router';
 // --------------------------------------------------------------------------------
 import AppHead from '../components/AppHead';
 import NavBar from '../components/NavBar';
@@ -15,20 +16,23 @@ import {
   getFeedData,
 } from '../helpers';
 import { HomeInterface } from '../interfaces';
-import { jwt, tags, accounts, feed } from '../apollo/cache';
+import { jwt, tags, accounts, feed, router } from '../apollo/cache';
 
 const Home: NextPage = ({ taken, hashTags, users, posts }: HomeInterface) => {
   // --------------------------------------------------------------------------------
   // 📌  MAIN APP EXIT COMPONENT
   // --------------------------------------------------------------------------------
 
+  const nextRouter = useRouter();
+
   useEffect(() => {
-    // 📌 set available initial data to apollo state
+    // 📌 set initial data to apollo state
 
     if (taken) jwt(taken);
     if (hashTags) tags(hashTags);
     if (users) accounts(users);
     if (posts) feed(posts);
+    if (nextRouter) router(nextRouter); // 📌 set router to apollo state
   }, [taken, hashTags, users, posts]);
 
   // console.log('🐞 JSON for interfaces', JSON.stringify(posts)); //debug

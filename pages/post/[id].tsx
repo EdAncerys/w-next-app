@@ -1,5 +1,3 @@
-import { memo } from 'react';
-import { useRouter } from 'next/router';
 import CloseIcon from '@mui/icons-material/Close';
 // --------------------------------------------------------------------------------
 import PostMedia from '../../components/post/PostMedia';
@@ -16,6 +14,7 @@ import {
   appLoginAction,
 } from '../../helpers';
 import { PostInterface } from '../../interfaces';
+import { router } from '../../apollo/cache';
 
 interface PostScreenInterface {
   post: PostInterface;
@@ -33,10 +32,8 @@ const PostScreen = ({ post }: PostScreenInterface) => {
       </div>
     );
 
-  const router = useRouter();
   const { body, commentsOnMe, user, picture } = post;
-  console.log('🐞 ', post); // debug
-  console.log('🐞 ', JSON.stringify(post)); // debug
+  // console.log('🐞 ', post); // debug
 
   // 📌 get image url from post to pass to header as a preview to link
   const { url, formats, mime } = picture;
@@ -53,7 +50,7 @@ const PostScreen = ({ post }: PostScreenInterface) => {
   // --------------------------------------------------------------------------------
   const handleClosePostAction = () => {
     const path = `/`;
-    router.push(path);
+    router()?.push(path);
   };
 
   // --------------------------------------------------------------------------------
