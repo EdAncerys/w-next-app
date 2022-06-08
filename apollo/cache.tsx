@@ -6,9 +6,9 @@ import { TagInterface, AccountsInterface, PostInterface } from '../interfaces';
 // --------------------------------------------------------------------------------
 
 export const jwt = makeVar<string | null>(null);
-export const tags = makeVar<TagInterface | null>(null);
-export const accounts = makeVar<AccountsInterface | null>(null);
-export const feed = makeVar<PostInterface | null>(null);
+export const tags = makeVar<TagInterface[] | null>(null);
+export const accounts = makeVar<AccountsInterface[] | null>(null);
+export const feed = makeVar<PostInterface[] | null>(null);
 
 // --------------------------------------------------------------------------------
 // 📌  Add to apollo cash reactive variables

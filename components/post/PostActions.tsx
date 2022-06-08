@@ -4,12 +4,12 @@ import { useRouter } from 'next/router';
 import { redirectAction, appColors } from '../../helpers';
 import { PostInterface } from '../../interfaces';
 
-interface PostInterface {
+interface PostActionsInterface {
   post: PostInterface;
   isPost?: boolean;
 }
 
-const PostActions = ({ post, isPost }: PostInterface) => {
+const PostActions = ({ post, isPost }: PostActionsInterface) => {
   if (!post) return null;
 
   const router = useRouter();

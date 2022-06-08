@@ -12,10 +12,6 @@ const Feed = () => {
   const contextFeed = useReactiveVar(feed);
   const [posts, setPosts] = useState<PostInterface[]>([]);
 
-
-
-
-
   const [isFetching, setFetching] = useState<true | false>(false);
 
   const startFrom = useRef(15);
@@ -27,7 +23,7 @@ const Feed = () => {
   }
 
   useEffect(() => {
-    // if (contextFeed) setPosts(contextFeed);
+    if (contextFeed) setPosts(contextFeed);
   }, [contextFeed]);
 
   // HANDLERS --------------------------------------------------------
@@ -36,6 +32,8 @@ const Feed = () => {
 
     try {
       setFetching(true);
+      // set timeTout to avoid multiple calls on bottom reached
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       // ⬇️  post refetch handleScroll
       if (top) {
         // reset offset & limit values if top is true
@@ -55,8 +53,6 @@ const Feed = () => {
 
       // increment offset for posts
       startFrom.current = startFrom.current + feedLimit.current;
-      // set timeTout to avoid multiple calls on bottom reached
-      // await new Promise((resolve) => setTimeout(resolve, 1000));
     } catch (error) {
       console.error(error);
     } finally {
@@ -66,24 +62,24 @@ const Feed = () => {
 
   if (!posts) return <Loading />;
 
-  const handleScroll = ({ currentTarget }: {currentTarget: Element}) => {
+  const handleScroll = ({ currentTarget }: { currentTarget: Element }) => {
     // ⬇️ handle refetch on bottom reached
     const scroll = currentTarget.scrollTop;
     let isHide = scroll > 350;
 
+    // 📌 get nav container element by class name
+    const navContainer = document.querySelector('.nav-container');
     // detect when scroll direction is changed
     if (scroll > scrollProgress.current) {
       // console.log('🐞 scroll down');
       if (isHide) {
-        document?
-          .querySelector('.nav-container')
-          .classList.add('no-overflow', 'slide-up');
+        // get nav-container element & add hide class to it
+        if (navContainer) navContainer.classList.add('hide');
       }
     } else {
       // console.log('🐞 scroll up');
-      document?
-        .querySelector('.nav-container')
-        .classList.remove('no-overflow', 'slide-up');
+      // get nav-container element & remove hide class from it
+      if (navContainer) navContainer.classList.remove('hide');
     }
 
     const scrollHeight = currentTarget.scrollHeight;
@@ -108,7 +104,7 @@ const Feed = () => {
 
   return (
     <div onScroll={handleScroll} className="post-wrapper">
-      {posts.map((post, key) => {
+      {posts.map((post: PostInterface, key: number) => {
         return <FeedElement post={post} key={key} item={key} />;
       })}
 

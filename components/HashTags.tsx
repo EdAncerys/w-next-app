@@ -26,8 +26,8 @@ const HashTags = ({}) => {
     <div>
       <div className="side-menu-title">Popular Hashtags</div>
       <div className="flex-wrap" style={{ paddingTop: '1em' }}>
-        {posts &&
-          posts.map((tag, key) => {
+        {posts.length > 0 &&
+          posts.map((tag: TagInterface, key: number) => {
             const { tagname } = tag;
             const tagName = tagname.replace('#', '');
 

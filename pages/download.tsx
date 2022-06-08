@@ -78,7 +78,11 @@ const HomeScreen = ({}) => {
     );
   };
 
-  const ServeDevice = ({ isAndroid }) => {
+  interface DeviceInterface {
+    isAndroid?: boolean;
+  }
+
+  const ServeDevice = ({ isAndroid }: DeviceInterface) => {
     let deviceIcon = '/icons/Apple.svg';
     if (isAndroid) deviceIcon = '/icons/Android.svg';
 

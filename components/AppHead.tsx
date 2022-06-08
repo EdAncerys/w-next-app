@@ -1,9 +1,9 @@
 import Head from 'next/head';
 
 interface HeadInterface {
-  title?: string;
-  body?: string;
-  image?: string;
+  title?: string | null;
+  body?: string | null;
+  image?: string | null;
 }
 
 const AppHead = ({ title, body, image }: HeadInterface) => {

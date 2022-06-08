@@ -1,13 +1,14 @@
 import { NextRouter } from 'next/router';
 export interface TagInterface {
+  typename: string;
   tagname: string;
-  __typename: string;
+  __typename?: string;
 }
 export interface HomeInterface {
-  taken: string;
-  hashTags: TagInterface;
-  users: AccountsInterface;
-  posts: PostInterface;
+  taken?: string | null;
+  hashTags?: TagInterface[] | null;
+  users?: AccountsInterface[] | null;
+  posts?: PostInterface[] | null;
 }
 
 // --------------------------------------------------------------------------------

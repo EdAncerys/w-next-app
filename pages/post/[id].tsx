@@ -15,8 +15,13 @@ import {
   getOnePostById,
   appLoginAction,
 } from '../../helpers';
+import { PostInterface } from '../../interfaces';
 
-const HomeScreen = ({ post, id }) => {
+interface PostScreenInterface {
+  post: PostInterface;
+}
+
+const PostScreen = ({ post }: PostScreenInterface) => {
   // --------------------------------------------------------------------------------
   // 📌  MAIN post component
   // --------------------------------------------------------------------------------
@@ -31,13 +36,15 @@ const HomeScreen = ({ post, id }) => {
   const router = useRouter();
   const { body, commentsOnMe, user, picture } = post;
   console.log('🐞 ', post); // debug
+  console.log('🐞 ', JSON.stringify(post)); // debug
 
   // 📌 get image url from post to pass to header as a preview to link
   const { url, formats, mime } = picture;
 
   // check media file type and render accordingly
   const isVideo = giveMediaType(mime);
-  let imageUrl = formats && formats.medium ? formats.medium.url : url;
+  let imageUrl: string | null =
+    formats && formats.medium ? formats.medium.url : url;
   let pageTitle = null;
   // if isVideo default to null to pass wunder logo as link preview
   if (isVideo) imageUrl = null;
@@ -168,4 +175,4 @@ export const getServerSideProps = async (context: any) => {
   };
 };
 
-export default HomeScreen;
+export default PostScreen;

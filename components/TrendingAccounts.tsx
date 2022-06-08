@@ -5,11 +5,12 @@ import { useReactiveVar } from '@apollo/client';
 // --------------------------------------------------------------------------------
 import { accounts } from '../apollo/cache';
 import { redirectAction } from '../helpers';
+import { AccountsInterface } from '../interfaces';
 
 const TrendingAccounts = ({}) => {
   const router = useRouter();
 
-  const [posts, setPost] = useState<null | string>(null);
+  const [posts, setPost] = useState<AccountsInterface[]>([]);
   const contextAccounts = useReactiveVar(accounts);
 
   // HELPERS
@@ -33,7 +34,7 @@ const TrendingAccounts = ({}) => {
         className="flex-wrap accounts-container"
         style={{ paddingTop: '1em' }}
       >
-        {posts &&
+        {posts.length > 0 &&
           posts.map((user, key) => {
             const { id, firstName, lastName, username, picture, validated } =
               user;
