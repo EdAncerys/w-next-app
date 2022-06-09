@@ -1,11 +1,11 @@
 import { memo } from 'react';
+import { useRouter } from 'next/router';
 // --------------------------------------------------------------------------------
 import UserProfile from './UserProfile';
 import PostContent from './PostContent';
 import PostMedia from './PostMedia';
 // --------------------------------------------------------------------------------
 import { PostInterface } from '../../interfaces';
-import { router } from '../../apollo/cache';
 
 interface FeedElementInterface {
   post: PostInterface;
@@ -13,14 +13,13 @@ interface FeedElementInterface {
 }
 
 const FeedElement = ({ post, item }: FeedElementInterface) => {
-  if (!post) return null;
-
+  const router = useRouter();
   const { id } = post;
 
   // --------------------------------------------------------------------------------
   const handlePostAction = () => {
     const path = `/post/${id}`;
-    router()?.push(path);
+    router.push(path);
   };
 
   return (

@@ -1,4 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
+import { useRouter } from 'next/router';
 // --------------------------------------------------------------------------------
 import PostMedia from '../../components/post/PostMedia';
 import Loading from '../../components/Loading';
@@ -14,7 +15,6 @@ import {
   appLoginAction,
 } from '../../helpers';
 import { PostInterface } from '../../interfaces';
-import { router } from '../../apollo/cache';
 
 interface PostScreenInterface {
   post: PostInterface;
@@ -25,12 +25,7 @@ const PostScreen = ({ post }: PostScreenInterface) => {
   // 📌  MAIN post component
   // --------------------------------------------------------------------------------
 
-  if (!post)
-    return (
-      <div className="flex" style={{ height: '100vh' }}>
-        <Loading />
-      </div>
-    );
+  const router = useRouter();
 
   const { body, commentsOnMe, user, picture } = post;
   // console.log('🐞 ', post); // debug
@@ -50,7 +45,7 @@ const PostScreen = ({ post }: PostScreenInterface) => {
   // --------------------------------------------------------------------------------
   const handleClosePostAction = () => {
     const path = `/`;
-    router()?.push(path);
+    router.push(path);
   };
 
   // --------------------------------------------------------------------------------
@@ -113,6 +108,13 @@ const PostScreen = ({ post }: PostScreenInterface) => {
       </div>
     );
   };
+
+  if (!post)
+    return (
+      <div className="flex" style={{ height: '100vh' }}>
+        <Loading />
+      </div>
+    );
 
   return (
     <div>

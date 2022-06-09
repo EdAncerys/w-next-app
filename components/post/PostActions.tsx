@@ -1,7 +1,7 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 // --------------------------------------------------------------------------------
 import { PostInterface } from '../../interfaces';
-import { router } from '../../apollo/cache';
 
 interface PostActionsInterface {
   post: PostInterface;
@@ -9,7 +9,7 @@ interface PostActionsInterface {
 }
 
 const PostActions = ({ post, isPost }: PostActionsInterface) => {
-  if (!post) return null;
+  const router = useRouter();
 
   const { id, statistics } = post;
   const { applauds, coins, comments, shoutouts } = statistics;
@@ -17,7 +17,7 @@ const PostActions = ({ post, isPost }: PostActionsInterface) => {
   // HANDLERS ---------------------------------------------------------
   const handlePostAction = () => {
     const path = `/download`;
-    router()?.push(path);
+    router.push(path);
   };
 
   if (isPost)

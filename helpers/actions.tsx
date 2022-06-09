@@ -142,7 +142,7 @@ export const getFeedData = async ({ startFrom, limit, jwt }: FeedInterface) => {
 };
 
 export const redirectAction = ({ router, path }: RedirectInterface) => {
-  if (router) router.push(path);
+  router?.push(path);
 };
 
 export const giveMediaType = (mime: string | undefined) => {

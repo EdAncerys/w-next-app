@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 // --------------------------------------------------------------------------------
 // 📌  Import fixes React Hydration Error for ReactPlayer
 // --------------------------------------------------------------------------------
@@ -10,7 +11,6 @@ import PostActions from './PostActions';
 // --------------------------------------------------------------------------------
 import { giveMediaType } from '../../helpers';
 import { PostInterface } from '../../interfaces';
-import { router } from '../../apollo/cache';
 
 interface PostContentInterface {
   post: PostInterface;
@@ -18,7 +18,7 @@ interface PostContentInterface {
 }
 
 const PostMedia = ({ post, isPost }: PostContentInterface) => {
-  if (!post || !post.picture) return null;
+  const router = useRouter();
 
   const { id, title, picture } = post;
   const { url, formats, mime } = picture;
@@ -33,7 +33,7 @@ const PostMedia = ({ post, isPost }: PostContentInterface) => {
     if (isVideo) return;
 
     const path = `/post/${id}`;
-    router()?.push(path);
+    router.push(path);
   };
 
   const ServeContentType = () => {
