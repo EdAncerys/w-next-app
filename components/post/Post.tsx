@@ -76,11 +76,15 @@ const Feed = () => {
       if (isScrollOverLimit) {
         // get nav-container element & add hide class to it
         navContainer?.classList.add('slide-up', 'no-overflow');
+        // hide nav norder by adding classs on time out
+        setTimeout(() => {
+          navContainer?.classList.add('no-border');
+        }, 400);
       }
     } else {
       console.log('🐞 scroll up');
       // get nav-container element & remove hide class from it
-      navContainer?.classList.remove('slide-up', 'no-overflow');
+      navContainer?.classList.remove('no-border', 'slide-up', 'no-overflow');
     }
 
     const scrollHeight = currentTarget.scrollHeight;
