@@ -65,21 +65,22 @@ const Feed = () => {
   const handleScroll = ({ currentTarget }: { currentTarget: Element }) => {
     // ⬇️ handle refetch on bottom reached
     const scroll = currentTarget.scrollTop;
-    let isHide = scroll > 350;
+    let isScrollOverLimit = scroll > 350;
+    // let isScrollOverLimit = Math.abs(scroll - scrollProgress.current) > 350;
 
     // 📌 get nav container element by class name
     const navContainer = document.querySelector('.nav-container');
     // detect when scroll direction is changed
     if (scroll > scrollProgress.current) {
-      // console.log('🐞 scroll down');
-      if (isHide) {
+      console.log('🐞 scroll down');
+      if (isScrollOverLimit) {
         // get nav-container element & add hide class to it
-        if (navContainer) navContainer.classList.add('hide');
+        navContainer?.classList.add('slide-up', 'no-overflow');
       }
     } else {
-      // console.log('🐞 scroll up');
+      console.log('🐞 scroll up');
       // get nav-container element & remove hide class from it
-      if (navContainer) navContainer.classList.remove('hide');
+      navContainer?.classList.remove('slide-up', 'no-overflow');
     }
 
     const scrollHeight = currentTarget.scrollHeight;
