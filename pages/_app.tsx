@@ -6,11 +6,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   // 📌  NEXT.js APP COMPONENT
   // --------------------------------------------------------------------------------
 
-  return (
-    <div style={{ width: '100%', height: '100vh' }}>
-      <Component {...pageProps} />
-    </div>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;
