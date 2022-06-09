@@ -86,6 +86,10 @@ const HomeScreen = ({}) => {
     let deviceIcon = '/icons/Apple.svg';
     if (isAndroid) deviceIcon = '/icons/Android.svg';
 
+    // hide on mobile depending on device type
+    if (isAndroid && !isAndroid) return null;
+    if (isIOS && isAndroid) return null;
+
     return (
       <div style={{ cursor: 'pointer' }}>
         <Image
