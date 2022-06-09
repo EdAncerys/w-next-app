@@ -67,8 +67,8 @@ const HomeScreen = ({}) => {
           the app using your mobile device.
         </div>
         <div className="app-devices">
+          <ServeDevice iosLogo />
           <ServeDevice />
-          <ServeDevice isAndroid />
         </div>
 
         <div className="app-devices download-app-logo">
@@ -79,16 +79,16 @@ const HomeScreen = ({}) => {
   };
 
   interface DeviceInterface {
-    isAndroid?: boolean;
+    iosLogo?: boolean;
   }
 
-  const ServeDevice = ({ isAndroid }: DeviceInterface) => {
-    let deviceIcon = '/icons/Apple.svg';
-    if (isAndroid) deviceIcon = '/icons/Android.svg';
+  const ServeDevice = ({ iosLogo }: DeviceInterface) => {
+    let deviceIcon = '/icons/Android.svg';
+    if (iosLogo) deviceIcon = '/icons/Apple.svg';
 
     // hide on mobile depending on device type
-    if (isAndroid && !isAndroid) return null;
-    if (isIOS && isAndroid) return null;
+    if (isAndroid && iosLogo) return null;
+    if (isIOS && !iosLogo) return null;
 
     return (
       <div className="btn-icon" style={{ cursor: 'pointer' }}>
