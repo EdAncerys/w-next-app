@@ -147,9 +147,9 @@ const SearchBox = () => {
         <ServeClearSearch />
       </div>
       {postData.length > 0 && (
-        <div className="dropdown-wrapper">
-          <div className="dropdown">
-            <div style={{ overflowY: 'auto' }}>
+        <div className="dropdown-container">
+          <div className="dropdown-wrapper">
+            <div className="dropdown">
               {postData.map((feed, index) => (
                 <PostItem post={feed} key={String(index)} />
               ))}

@@ -44,23 +44,27 @@
   border: 1px solid #f2f2f2;
   background-color: #f2f2f2;
 }
-.dropdown-wrapper {
+.dropdown-container {
   position: absolute;
   z-index: 99;
   top: calc(var(--input-height));
   width: var(--input-width);
+  /* padding-top: 10px; */
+}
+.dropdown-wrapper {
+  position: relative;
+  border-bottom-left-radius: calc(var(--input-height) / 2);
+  border-bottom-right-radius: calc(var(--input-height) / 2);
+  background-color: #f2f2f2;
+  padding-top: 10px;
 }
 .dropdown {
   position: relative;
   overflow: hidden;
-  height: 200px;
-  overflow-y: scroll;
-  background-color: #f2f2f2;
-  border: 1px solid #f2f2f2;
-  border-bottom-left-radius: calc(var(--input-height) / 2);
-  border-bottom-right-radius: calc(var(--input-height) / 2);
-  padding: 20px;
   border-top: 2px solid #d8d8d8;
+  height: 200px;
+  padding: 10px 20px;
+  overflow-y: scroll;
 }
 
 .search-body {
