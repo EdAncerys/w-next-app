@@ -72,7 +72,7 @@ const HomeScreen = ({}) => {
         </div>
 
         <div className="app-devices download-app-logo">
-          <Image src={'/svg/logo.svg'} width={200} height={44} />
+          <Image alt="wunder" src={'/svg/logo.svg'} width={200} height={44} />
         </div>
       </div>
     );
@@ -94,6 +94,7 @@ const HomeScreen = ({}) => {
       <div className="btn-icon" style={{ cursor: 'pointer' }}>
         <Image
           src={deviceIcon}
+          alt="Download App"
           width="250"
           height="100%"
           onClick={handleGetApp}

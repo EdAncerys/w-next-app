@@ -79,7 +79,7 @@ const SearchBox = () => {
             borderRadius: '50%',
           }}
         >
-          <Image src="/icons/search.svg" width={16} height={16} />
+          <Image alt="search" src="/icons/search.svg" width={16} height={16} />
         </div>
       </div>
     );
@@ -113,7 +113,12 @@ const SearchBox = () => {
             </div>
           </div>
           {validated === 'yes' && (
-            <Image src="/icons/verified.svg" width={8} height={8} />
+            <Image
+              alt="verified"
+              src="/icons/verified.svg"
+              width={8}
+              height={8}
+            />
           )}
         </div>
       </div>

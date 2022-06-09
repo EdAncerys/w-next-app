@@ -56,6 +56,7 @@ const TrendingAccounts = ({}) => {
                 >
                   <div className="avatar-wrapper">
                     <Image
+                      alt={firstName || 'Avatar'}
                       src={avatar}
                       objectFit="cover"
                       width="100%"
@@ -75,6 +76,7 @@ const TrendingAccounts = ({}) => {
                     {isValidated && (
                       <div className="verified-icon">
                         <Image
+                          alt="verified"
                           src="/icons/badge.svg"
                           objectFit="cover"
                           width="100%"

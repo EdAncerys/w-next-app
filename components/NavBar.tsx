@@ -15,7 +15,7 @@ const NavBar = ({}) => {
   return (
     <div className="flex nav-wrapper">
       <div onClick={handleDownloadApp} style={{ cursor: 'pointer' }}>
-        <Image src={'/svg/logo.svg'} width={118.72} height={24} />
+        <Image alt="wunder" src={'/svg/logo.svg'} width={118.72} height={24} />
       </div>
       <AppSearch />
       <div className="main-btn" onClick={handleDownloadApp}>
