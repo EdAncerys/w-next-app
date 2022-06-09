@@ -16,14 +16,7 @@ const PostActions = ({ post, isPost }: PostActionsInterface) => {
 
   // HANDLERS ---------------------------------------------------------
   const handlePostAction = () => {
-    // 📌 disable in isPost mode
-    if (isPost) {
-      const path = `/download`;
-      router()?.push(path);
-      return;
-    }
-
-    const path = `/post/${id}`;
+    const path = `/download`;
     router()?.push(path);
   };
 

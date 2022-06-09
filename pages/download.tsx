@@ -91,7 +91,7 @@ const HomeScreen = ({}) => {
     if (isIOS && isAndroid) return null;
 
     return (
-      <div style={{ cursor: 'pointer' }}>
+      <div className="btn-icon" style={{ cursor: 'pointer' }}>
         <Image
           src={deviceIcon}
           width="250"
